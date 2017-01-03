@@ -1,12 +1,34 @@
-`marking` <-
-function(dataset, 
-                   frame, 
-                   cts = "counts", 
-                   streamFrame = NULL, 
-                   allowanceFrame= 2, 
-                   newcolname = "wearing")
-{
+#' Marking Data with Wearing Tags
+#'
+#' This function marks the dataset with wearing/non-wearing tags.
+#'
+#' @param dataset The source dataset, in dataframe format, which needs to be
+#' marked.
+#' @param frame The size of time interval to be considered.
+#' @param cts The name of the counts column. The default is "counts".
+#' @param streamFrame The size of time interval that the program will look back
+#' or forward if activity is detected. The default is the half of frame.
+#' @param allowanceFrame The size of time interval that zero counts allowed.
+#' The default is 2.
+#' @param newcolname The wearing marking column name.  The default is "wearing".
+#' After the data is processed, a new field will be added to the original
+#' dataframe.  This new field is the wearing /nowwearing indicator.
+#'
+#' @return A dataframe with an extra wearing/non-wearing marking column.
+#'
+#' @template ref2010
+#'
+#' @templateVar author liu
+#' @template auth
+#'
+#' @keywords internal
 
+marking <- function(dataset,
+                   frame,
+                   cts = "counts",
+                   streamFrame = NULL,
+                   allowanceFrame= 2,
+                   newcolname = "wearing") {
     cat("frame is ", frame, "\n")
     cat("streamFrame is ", streamFrame, "\n")
     cat("allowanceFrame is ", allowanceFrame, "\n")
@@ -130,4 +152,3 @@ function(dataset,
     names(rst) = c(oldnames, newcolname)
     return(rst)
 }
-

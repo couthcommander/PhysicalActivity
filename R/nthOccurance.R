@@ -1,6 +1,20 @@
-`nthOccurance` <-
-function(dataVct, value, nth = NA, reverse = FALSE)
-{
+#' Internal Function
+#'
+#' This is an internal function, not for users.
+#'
+#' @param dataVct DataVct
+#' @param value Value
+#' @param nth Nth
+#' @param reverse Reverse
+#'
+#' @return loc
+#'
+#' @templateVar author liu
+#' @template auth
+#'
+#' @keywords internal
+
+nthOccurance <- function(dataVct, value, nth = NA, reverse = FALSE) {
     loc = c()
     if(reverse){
         dataVct = rev(dataVct)
@@ -32,4 +46,3 @@ function(dataVct, value, nth = NA, reverse = FALSE)
 
     return(loc)
 }
-

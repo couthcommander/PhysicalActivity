@@ -1,6 +1,27 @@
-`markingTime` <-
-function(dataset, timestamp, startTime = "00:00:00", endTime = "23:59:59")
-{
+#' Mark Days
+#'
+#' This function adds a "day" variable to the source dataset. The day is marked
+#' in numeric order, according to the timestamp variable.
+#'
+#' @param dataset The source dataset, in dataframe format, that needs to be
+#' marked.
+#' @param timestamp The column name in the dataset that will be used as
+#' timestamp.
+#' @param startTime Define the starting time of a day.  It must be in the format
+#' of "hh:mm:ss".
+#' @param endTime Define the ending time of a day.  It must be in the format of
+#' "hh:mm:ss".
+#'
+#' @return A dataframe with an extra day marking column.
+#'
+#' @template ref2010
+#'
+#' @templateVar author liu
+#' @template auth
+#' @export
+
+markingTime <- function(dataset, timestamp, startTime = "00:00:00",
+                        endTime = "23:59:59") {
     if(is.numeric(timestamp)){
         cadval = as.vector(dataset[,timestamp])
     }else {
@@ -25,4 +46,3 @@ function(dataset, timestamp, startTime = "00:00:00", endTime = "23:59:59")
     temp = cbind(dataset, days = dayMarking) 
     return(temp)
 }
-

@@ -1,6 +1,49 @@
-`sumVct` <-
-function(datavct, wearing = "wearing", TS = "TimeStamp", markingString = "w", by = "days", id = NULL)
-{
+#' Summarize Wearing or Nonwearing Time Interval
+#'
+#' This function summarizes the classified wear (nonwear) time by interval basis
+#' from the epoch-by-epoch classified wear (nonwear) status classified by
+#' \code{\link{wearingMarking}}.
+#'
+#' @param datavct Data with classified wear (nonwear) status classified by
+#' \code{\link{wearingMarking}}.
+#' @param wearing The column name for classified wear and nonwear status. The
+#' default is "wearing".
+#' @param TS The column name for timestamp. The default is "TimeStamp".
+#' @param markingString Option for summarizing wear (markingString="w") or
+#' nonwear time interval (markingString="nw").
+#' @param by A sequence of days for classified wear (nonwear) time intervals.
+#' @param id Optional output for subject identification or file name.
+#'
+#' @return The summary data for wearing or nonwearing time intervals.
+#'
+#' @template ref2010
+#'
+#' @templateVar author all
+#' @template auth
+#'
+#' @seealso \code{\link{wearingMarking}}, \code{\link{summaryData}}
+#'
+#' @examples
+#'
+#' data(dataSec)
+#' 
+#' mydata1m = dataCollapser(dataSec, TS = "TimeStamp", col = "counts", by = 60)
+#'
+#' data1m = wearingMarking(dataset = mydata1m,
+#'                        frame = 90, 
+#'                        perMinuteCts = 1,
+#'                        TS = "TimeStamp",
+#'                        cts = "counts", 
+#'                        streamFrame = NULL, 
+#'                        allowanceFrame= 2, 
+#'                        newcolname = "wearing")
+#'
+#' sumVct(data1m, id="sdata1m")
+#' sumVct(data1m, id="sdata1m", markingString = "nw")
+#' @export
+
+sumVct <- function(datavct, wearing = "wearing", TS = "TimeStamp",
+                        markingString = "w", by = "days", id = NULL) {
     len = as.numeric(table(datavct[, c(by)]))
     if(length(len) > 1){
         for( j in 2:length(len)){
@@ -47,4 +90,3 @@ function(datavct, wearing = "wearing", TS = "TimeStamp", markingString = "w", by
     allrst = allrst[collist]
     return(allrst)
 }
-
