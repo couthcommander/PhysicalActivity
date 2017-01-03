@@ -29,6 +29,7 @@
 #' Accelerometry in Youth. J Appl Physiol. 108(2):314-27.
 #'
 #' @keywords accelerometer nonwear process
+#' @importFrom graphics abline plot text
 #'
 #' @examples
 #' data(dataSec)
