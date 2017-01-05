@@ -98,24 +98,25 @@ wearingMarking <- function(dataset,
                           dayStart = "00:00:00",
                           dayEnd = "23:59:59",
                           ...) {
-    if(perMinuteCts != 1){
+    if(perMinuteCts != 1) {
         #not a minute data run collapse
-        data2 = dataCollapser(dataset, TS=TS, by = 60, col = cts, ...)
-    }else{
-        data2 = dataset
+        data2 <- dataCollapser(dataset, TS=TS, by = 60, col = cts, ...)
+    } else {
+        data2 <- dataset
     }
-    data3 = marking(data2, frame = frame, cts = cts, streamFrame = streamFrame, 
-                          allowanceFrame = allowanceFrame, newcolname = newcolname)
+    data3 <- marking(data2, frame = frame, cts = cts, streamFrame = streamFrame,
+                     allowanceFrame = allowanceFrame, newcolname = newcolname)
 
-    colName = names(data3)
-    if(!getMinuteMarking){
-        dataset$key = substring(dataset[,names(dataset)[TS ==  names(dataset)]], 1, 16)
-        data3$key = substring(data3[,names(data3)[TS ==  names(data3)]], 1, 16)
-        data4 = merge(dataset, data3[c(newcolname, "key")], all.x = TRUE, by = "key")[c(colName)]
-    }else{
-        data4 = data3[c(colName)]
+    if(!getMinuteMarking) {
+        data4 <- dataset
+        key1 <- substring(data4[,TS], 1, 16)
+        key2 <- substring(data3[,TS], 1, 16)
+        data4[,newcolname] <- data3[match(key1, key2), newcolname]
+    } else {
+        data4 <- data3
     }
 
-    data4$weekday = weekdays(as.POSIXlt(as.vector(data4[,TS]),format = "%Y-%m-%d %H:%M:%S", tz = "GMT"))
+    ts <- as.POSIXct(data4[,TS], format = "%Y-%m-%d %H:%M:%S", tz = "GMT")
+    data4[,'weekday'] <- weekdays(ts)
     markingTime(data4, TS, dayStart, dayEnd)
 }

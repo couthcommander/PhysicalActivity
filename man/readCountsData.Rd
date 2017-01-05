@@ -4,7 +4,7 @@
 \alias{readCountsData}
 \title{Convert Accelerometer Output Data to Correct Data Format}
 \usage{
-readCountsData(filename, ctPerSec)
+readCountsData(filename, ctPerSec, axes = 0)
 }
 \arguments{
 \item{filename}{A filename of accelerometer output to be read.}
@@ -13,6 +13,9 @@ readCountsData(filename, ctPerSec)
 number of counting will be performed in every second. For examples: for 1-sec
 epoch data, set ctPerSec = 1; for 10-sec epoch data, set ctPerSec = 1/10; for
 1-min epoch data, set ctPerSec = 1/60.}
+
+\item{axes}{The number of axes collected with the accelerometer.  Defaults to
+zero which means only the number of steps are stored.}
 }
 \value{
 Data with the correct format (TimeStamp, counts) to be used for

@@ -10,6 +10,8 @@
 #' number of counting will be performed in every second. For examples: for 1-sec
 #' epoch data, set ctPerSec = 1; for 10-sec epoch data, set ctPerSec = 1/10; for
 #' 1-min epoch data, set ctPerSec = 1/60.
+#' @param axes The number of axes collected with the accelerometer.  Defaults to
+#' zero which means only the number of steps are stored.
 #'
 #' @return Data with the correct format (TimeStamp, counts) to be used for
 #' \code{\link{wearingMarking}}.
@@ -46,62 +48,52 @@
 #' \dontrun{mydata1s = readCountsData("rawActigraphOutput.dat", ctPerSec=1)}
 #' @export
 
-readCountsData <- function(filename, ctPerSec) {
+readCountsData <- function(filename, ctPerSec, axes = 0) {
     print("Please wait while I am reading your source data ...")
     #reading raw data
     Tfile <- file(filename, "r")
     if(isOpen(Tfile, "r")) #  TRUE
     {
         seek(Tfile, 0, rw="r") # reset to beginning
-        lines = readLines(Tfile)
+        lines <- readLines(Tfile)
         close(Tfile)
     }
 
-    skipPos = grep("-----", lines)[2]  #number of skip lines
-    startTPos = grep("Start Time", lines)  #start time
-
-    #get start date
-    startTime = gsub("Start Time ", "", lines[startTPos])
-    startTime = gsub("[[:blank:]]", "", startTime)
-    startDatePos = grep("Start Date ", lines)  #startdate
-    startDate = gsub("Start Date ", "", lines[startDatePos])
-    startDate = gsub("[[:blank:]]", "", startDate)
-    startDate = strsplit(startDate, "/")[[1]]
-    if(nchar(startDate[1]) == 1){
-        startDate[1] = paste("0", startDate[1], sep ="")
+    skipPos <- max(grep("-----", lines))
+    heading <- lines[seq(skipPos)]
+    lines <- lines[-seq(skipPos)]
+    metaKeys <- c('Serial Number', 'Start Time', 'Start Date', 'Epoch Period (hh:mm:ss)',
+        'Download Time', 'Download Date', 'Current Memory Address', 'Current Battery Voltage', 'Mode')
+    metaVals <- setNames(character(length(metaKeys)), metaKeys)
+    for(i in seq_along(metaVals)) {
+        key <- gsub("[(]", "\\\\(", metaKeys[i])
+        regex <- sprintf("^.*%s[:= ]+([^ ]+).*$", key)
+        metaVals[i] <- sub(regex, "\\1", grep(key, heading, value=TRUE))
     }
-    if(nchar(startDate[2]) == 1){
-        startDate[2] = paste("0", startDate[2], sep ="")
+    startDate <- sub("([0-9]+)/([0-9]+)/([0-9]+)", "\\3-\\1-\\2", metaVals['Start Date'])
+    startDate <- sub("-([0-9])$", "-0\\1", sub("-([0-9])-", "-0\\1-", startDate))
+    rawTimeStamp <- as.POSIXct(paste(startDate, metaVals['Start Time'], sep = " "), tz = "GMT")
+
+    rawdata <- as.numeric(unlist(lapply(strsplit(lines, "[ ]+"), function(i) {
+        i[i != ""]
+    })))
+    if(axes > 0) {
+        dat <- data.frame(matrix(rawdata, ncol=axes+1, byrow=TRUE))
+        names(dat) <- c(paste0('axis', seq(axes)), 'counts')
+        dat[,'vm'] <- sqrt(rowSums(dat[,seq(axes)]^2))
+    } else {
+        dat <- data.frame(counts = rawdata)
     }
-    startDate = paste(startDate[3], startDate[1], startDate[2], sep = "-")
-    #end of getting startdate
-    rawTimeStamp1  = paste(startDate, startTime, sep = " ")
- 
-    #get epochtime
-    #if(is.null(ctPerSec)){
-    #    ctPerSec = getEpoch(filename, unit = "sec")
-    #}
-    #end of getting epoch time
+    dat <- cbind(TimeStamp = NA, dat)
+    nl <- nrow(dat)
 
-    startline = skipPos+1
-    endline = length(lines)
-
-    rawdata = c()
-    timeline = c()
-    for(i in startline: endline){
-        temp0 = gsub("[[:blank:]]+", " ",lines[i])
-        temp = strsplit(temp0, " ")[[1]]
-        temp = temp[temp != ""]
-        rawdata = c(rawdata, temp)
+    if(ctPerSec > 1) {
+        rst <- as.character(rawTimeStamp + seq(0, nl/ctPerSec))
+        rst <- rep(rst, each=ctPerSec)[seq(nl)]
+    } else {
+        rst <- as.character(rawTimeStamp + seq(0, nl-1) / ctPerSec)
     }
-
-    if(ctPerSec >1){
-        timeline = rep(0:as.integer(length(rawdata)/ctPerSec), each = ctPerSec)[1:length(rawdata)]
-    }else{  
-        timeline = (0:as.integer(length(rawdata)-1)/ctPerSec)
-    }
-
-    rawTimeStamp = rep(rawTimeStamp1, length(rawdata))
-    rst = gsub(" GMT", "", as.POSIXlt(rawTimeStamp, tz = "GMT")+ timeline)
-    data.frame(TimeStamp = as.vector(rst), counts = as.numeric(as.vector(rawdata)))
+    dat[,'TimeStamp'] <- rst
+    attr(dat, 'metadata') <- as.data.frame(metaVals, stringsAsFactors=FALSE)
+    dat
 }
