@@ -27,7 +27,8 @@ markingTime <- function(dataset, timestamp, startTime = "00:00:00",
     size <- length(cadval)
     day1 <- format(min(alltime), "%Y-%m-%d")
     daystart <- as.POSIXct(paste(day1, startTime), tz = "GMT")
-    dayMarking <- floor(as.numeric(difftime(alltime, daystart, tz = "GMT", units = "days"))) + 1
+    ts <- difftime(alltime, daystart, tz = "GMT", units = "days")
+    dayMarking <- floor(as.numeric(ts)) + 1
     dataset[,'days'] <- dayMarking
     dataset
 }

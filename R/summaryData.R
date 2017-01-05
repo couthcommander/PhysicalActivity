@@ -66,7 +66,8 @@
 #' summaryData(data=data1m, validCut=600, perMinuteCts=1, markingString = "w")
 #' @export
 
-summaryData <- function(data, validCut=600, perMinuteCts=1, markingString = "w") {
+summaryData <- function(data, validCut = 600, perMinuteCts = 1,
+                        markingString = "w") {
     stopifnot('weekday' %in% names(data))
     if(perMinuteCts==1) {
         unit <- "1 min"
@@ -76,35 +77,44 @@ summaryData <- function(data, validCut=600, perMinuteCts=1, markingString = "w")
         epoch <- 60 / perMinuteCts
         unit <- paste(epoch, "sec")
     }
+    catWeekend <- function(day) {
+        factor(day %in% c('Saturday', 'Sunday'),
+               labels = c('weekday', 'weekend'))
+    }
     ctsPerDay <- 1440 * perMinuteCts
     validCut <- validCut * perMinuteCts
-    data[,'weekend'] <- factor(data[,'weekday'] %in% c('Saturday', 'Sunday'), labels = c('weekday', 'weekend'))
+    data[,'weekend'] <- catWeekend(data[,'weekday'])
     # total number of week and weekend days
-    totalNumWeekWeekend <- tapply(data[,'weekend'], data[,'weekend'], length)/ctsPerDay
-    totalNumWeekWeekend[is.na(totalNumWeekWeekend)] <- 0
+    totWWe <- tapply(data[,'weekend'], data[,'weekend'], length) / ctsPerDay
+    totWWe[is.na(totWWe)] <- 0
     # total number of days
     totalNumDays <- nrow(data) / ctsPerDay
     totalNumDays[is.na(totalNumDays)] <- 0
     wearTime <- sumVct(data, markingString = markingString)
-    wearTime[,'weekend'] <- factor(wearTime[,'weekday'] %in% c('Saturday', 'Sunday'), labels = c('weekday', 'weekend'))
-    wearTimeByDay <- tapply(wearTime[,'duration'], wearTime[,'days'], sum, na.rm=TRUE)
+    wearTime[,'weekend'] <- catWeekend(wearTime[,'weekday'])
+    wearTimeByDay <- tapply(wearTime[,'duration'], wearTime[,'days'],
+                            sum, na.rm=TRUE)
     validWearTimeByDay <- wearTimeByDay[wearTimeByDay > validCut]
     valid.days <- as.numeric(names(validWearTimeByDay))
     valid.wearTime <- wearTime[wearTime[,'days'] %in% valid.days,]
-    valid.data <- data[data[,'days'] %in% valid.days,]
+    # valid wear time
+    val.WT <- wearTime[wearTime[,'days'] %in% valid.days,]
+    # weekend indicator for valid time
+    valid.WE <- data[data[,'days'] %in% valid.days, 'weekend']
     # total number of week and weekend days for valid days
-    totalValidNumWeekWeekend <- tapply(valid.data[,'weekend'], valid.data[,'weekend'], length)/ctsPerDay
+    totalValidNumWeekWeekend <- tapply(valid.WE, valid.WE, length) / ctsPerDay
     totalValidNumWeekWeekend[is.na(totalValidNumWeekWeekend)] <- 0
     # total number of days for valid days
-    totalValidNumDays <- nrow(valid.data) / ctsPerDay
+    totalValidNumDays <- length(valid.WE) / ctsPerDay
     totalValidNumDays[is.na(totalValidNumDays)] <- 0
-    weartimeValidDays <- tapply(valid.wearTime[,'duration'], valid.wearTime[,'weekend'], sum, na.rm=TRUE)
-    meanWeartimeValidDays <- weartimeValidDays / totalValidNumWeekWeekend
+    # wear time duration by day on valid days
+    val.WTD <- tapply(val.WT[,'duration'], val.WT[,'weekend'], sum, na.rm=TRUE)
+    meanWeartimeValidDays <- val.WTD / totalValidNumWeekWeekend
     meanWeartimeValidDays[is.na(meanWeartimeValidDays)] <- 0
-    meanWeartimeOverallValidDays <- sum(weartimeValidDays, na.rm=TRUE) / totalValidNumDays
+    meanWeartimeOverallValidDays <- sum(val.WTD, na.rm=TRUE) / totalValidNumDays
     meanWeartimeOverallValidDays[is.na(meanWeartimeOverallValidDays)] <- 0
     list(unit=unit, totalNumDays=totalNumDays,
-        totalNumWeekWeekend=totalNumWeekWeekend,
+        totalNumWeekWeekend=totWWe,
         validCut=validCut,
         totalValidNumDays=totalValidNumDays,
         totalValidNumWeekWeekend=totalValidNumWeekWeekend,

@@ -62,17 +62,23 @@ readCountsData <- function(filename, ctPerSec, axes = 0) {
     skipPos <- max(grep("-----", lines))
     heading <- lines[seq(skipPos)]
     lines <- lines[-seq(skipPos)]
-    metaKeys <- c('Serial Number', 'Start Time', 'Start Date', 'Epoch Period (hh:mm:ss)',
-        'Download Time', 'Download Date', 'Current Memory Address', 'Current Battery Voltage', 'Mode')
+    metaKeys <- c('Serial Number', 'Start Time', 'Start Date',
+                  'Epoch Period (hh:mm:ss)', 'Download Time', 'Download Date',
+                  'Current Memory Address', 'Current Battery Voltage', 'Mode')
     metaVals <- setNames(character(length(metaKeys)), metaKeys)
     for(i in seq_along(metaVals)) {
         key <- gsub("[(]", "\\\\(", metaKeys[i])
         regex <- sprintf("^.*%s[:= ]+([^ ]+).*$", key)
         metaVals[i] <- sub(regex, "\\1", grep(key, heading, value=TRUE))
     }
-    startDate <- sub("([0-9]+)/([0-9]+)/([0-9]+)", "\\3-\\1-\\2", metaVals['Start Date'])
-    startDate <- sub("-([0-9])$", "-0\\1", sub("-([0-9])-", "-0\\1-", startDate))
-    rawTimeStamp <- as.POSIXct(paste(startDate, metaVals['Start Time'], sep = " "), tz = "GMT")
+    # reformat date string as Y-m-d
+    startDate <- sub("([0-9]+)/([0-9]+)/([0-9]+)", "\\3-\\1-\\2",
+                     metaVals['Start Date'])
+    # add leading zeroes where necessary
+    startDate <- sub("-([0-9])$", "-0\\1",
+                     sub("-([0-9])-", "-0\\1-", startDate))
+    ts <- paste(startDate, metaVals['Start Time'], sep = " ")
+    rawTimeStamp <- as.POSIXct(ts, tz = "GMT")
 
     rawdata <- as.numeric(unlist(lapply(strsplit(lines, "[ ]+"), function(i) {
         i[i != ""]
