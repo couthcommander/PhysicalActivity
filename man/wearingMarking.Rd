@@ -5,9 +5,9 @@
 \title{Classify Wear and Nonwear Time for Accelerometer Data}
 \usage{
 wearingMarking(dataset, frame = 90, perMinuteCts = 60, TS = "TimeStamp",
-  cts = "counts", streamFrame = NULL, allowanceFrame = 2,
+  cts = "axis1", streamFrame = NULL, allowanceFrame = 2,
   newcolname = "wearing", getMinuteMarking = FALSE, dayStart = "00:00:00",
-  dayEnd = "23:59:59", ...)
+  tz = "UTC", ...)
 }
 \arguments{
 \item{dataset}{The source dataset, in dataframe format, which needs to be
@@ -23,7 +23,7 @@ perMinuteCts = 6; for data with 1-min epoch, set perMinuteCts = 1.}
 
 \item{TS}{The column name for timestamp. The default is "TimeStamp".}
 
-\item{cts}{The column name for counts. The default is "counts".}
+\item{cts}{The column name for counts. The default is "axis1".}
 
 \item{streamFrame}{The size of time interval that the program will look back
 or forward if activity is detected; Window 2 described in Choi, L., Liu, Z.,
@@ -46,8 +46,7 @@ collapse it into minute data. The default is FALSE.}
 \item{dayStart}{Define the starting time of day. The default is the midnight,
 "00:00:00". It must be in the format of "hh:mm:ss".}
 
-\item{dayEnd}{Define the ending time of day. The default is "23:59:59". It
-must be in the format of "hh:mm:ss".}
+\item{tz}{Local time zone, defaults to UTC.}
 
 \item{\dots}{Parameter settings that will be used in
 \code{\link{dataCollapser}} function.}

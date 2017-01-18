@@ -62,7 +62,7 @@ sumVct <- function(datavct, wearing = "wearing", TS = "TimeStamp",
             rst[,'days'] <- smalldatavct[1,by]
             rst[,'start'] <- rst[,'start'] + len[i]
             rst[,'end'] <- rst[,'end'] + len[i]
-            rst[,'weekday'] <- weekdays(as.Date(rst[,'startTimeStamp']))
+            rst[,'weekday'] <- weekdays(rst[,'startTimeStamp'])
             allrst[[i]] <- rst
         }
     }

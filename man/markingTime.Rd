@@ -4,8 +4,7 @@
 \alias{markingTime}
 \title{Mark Days}
 \usage{
-markingTime(dataset, timestamp, startTime = "00:00:00",
-  endTime = "23:59:59")
+markingTime(dataset, timestamp, startTime = "00:00:00", tz = "UTC")
 }
 \arguments{
 \item{dataset}{The source dataset, in dataframe format, that needs to be
@@ -17,8 +16,7 @@ timestamp.}
 \item{startTime}{Define the starting time of a day.  It must be in the format
 of "hh:mm:ss".}
 
-\item{endTime}{Define the ending time of a day.  It must be in the format of
-"hh:mm:ss".}
+\item{tz}{Local time zone, defaults to UTC.}
 }
 \value{
 A dataframe with an extra day marking column.

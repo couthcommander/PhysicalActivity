@@ -4,7 +4,7 @@
 \alias{marking}
 \title{Marking Data with Wearing Tags}
 \usage{
-marking(dataset, frame, cts = "counts", streamFrame = NULL,
+marking(dataset, frame, cts = "axis1", streamFrame = NULL,
   allowanceFrame = 2, newcolname = "wearing")
 }
 \arguments{
@@ -13,7 +13,7 @@ marked.}
 
 \item{frame}{The size of time interval to be considered.}
 
-\item{cts}{The name of the counts column. The default is "counts".}
+\item{cts}{The name of the counts column. The default is "axis1".}
 
 \item{streamFrame}{The size of time interval that the program will look back
 or forward if activity is detected. The default is the half of frame.}

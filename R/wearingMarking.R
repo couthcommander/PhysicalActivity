@@ -15,7 +15,7 @@
 #' epoch (perMinuteCts = 60). For examples: for data with 10-sec epoch, set
 #' perMinuteCts = 6; for data with 1-min epoch, set perMinuteCts = 1.
 #' @param TS The column name for timestamp. The default is "TimeStamp".
-#' @param cts The column name for counts. The default is "counts".
+#' @param cts The column name for counts. The default is "axis1".
 #' @param streamFrame The size of time interval that the program will look back
 #' or forward if activity is detected; Window 2 described in Choi, L., Liu, Z.,
 #' Matthews, C. E. and Buchowski, M. S. (2010). The default is the half of the
@@ -32,8 +32,7 @@
 #' collapse it into minute data. The default is FALSE.
 #' @param dayStart Define the starting time of day. The default is the midnight,
 #' "00:00:00". It must be in the format of "hh:mm:ss".
-#' @param dayEnd Define the ending time of day. The default is "23:59:59". It
-#' must be in the format of "hh:mm:ss".
+#' @param tz Local time zone, defaults to UTC.
 #' @param \dots Parameter settings that will be used in
 #' \code{\link{dataCollapser}} function.
 #'
@@ -90,13 +89,13 @@ wearingMarking <- function(dataset,
                           frame = 90, 
                           perMinuteCts = 60,
                           TS = "TimeStamp",
-                          cts = "counts", 
+                          cts = "axis1", 
                           streamFrame = NULL, 
                           allowanceFrame= 2, 
                           newcolname = "wearing",
                           getMinuteMarking = FALSE,
                           dayStart = "00:00:00",
-                          dayEnd = "23:59:59",
+                          tz = "UTC",
                           ...) {
     if(perMinuteCts != 1) {
         #not a minute data run collapse
@@ -116,7 +115,18 @@ wearingMarking <- function(dataset,
         data4 <- data3
     }
 
-    ts <- as.POSIXct(data4[,TS], format = "%Y-%m-%d %H:%M:%S", tz = "GMT")
+    ts <- data4[,TS]
+    if(!inherits(ts, "POSIXt")) {
+        ts <- as.POSIXct(ts, format = "%Y-%m-%d %H:%M:%S", tz = 'UTC')
+    }
+    # convert time zone if necessary
+    day1 <- ts[1]
+    day2 <- as.POSIXct(as.character(day1), tz=tz)
+    if(difftime(day1, day2, units='secs') != 0) {
+        offset <- difftime(ts, day1, units='secs')
+        ts <- day2 + offset
+    }
+    data4[,TS] <- ts
     data4[,'weekday'] <- weekdays(ts)
-    markingTime(data4, TS, dayStart, dayEnd)
+    markingTime(data4, TS, startTime = dayStart, tz = tz)
 }

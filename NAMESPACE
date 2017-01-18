@@ -3,6 +3,8 @@
 export(dataCollapser)
 export(markingTime)
 export(plotData)
+export(queryActigraph)
+export(readActigraph)
 export(readCountsData)
 export(sumVct)
 export(summaryData)

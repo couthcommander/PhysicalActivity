@@ -5,7 +5,7 @@
 #' @param dataset The source dataset, in dataframe format, which needs to be
 #' marked.
 #' @param frame The size of time interval to be considered.
-#' @param cts The name of the counts column. The default is "counts".
+#' @param cts The name of the counts column. The default is "axis1".
 #' @param streamFrame The size of time interval that the program will look back
 #' or forward if activity is detected. The default is the half of frame.
 #' @param allowanceFrame The size of time interval that zero counts allowed.
@@ -25,9 +25,9 @@
 
 marking <- function(dataset,
                    frame,
-                   cts = "counts",
+                   cts = "axis1",
                    streamFrame = NULL,
-                   allowanceFrame= 2,
+                   allowanceFrame = 2,
                    newcolname = "wearing") {
     cat(sprintf("frame is %s\nstreamFrame is %s\nallowanceFrame is %s\n",
                 frame, streamFrame, allowanceFrame))
@@ -53,10 +53,8 @@ marking <- function(dataset,
     allowancewin <- endpos-startpos
     ix <- which(allowancewin < allowanceFrame)
     #upstream
-    usStart <- startpos[ix] - streamFrame
-    usEnd <- startpos[ix] - 1
-    usStart[usStart <= 0 | usEnd <= 0] <- 1
-    ### should usEnd=1 if <=0
+    usStart <- pmax(startpos[ix] - streamFrame, 1)
+    usEnd <- pmax(startpos[ix] - 1, 1)
     #downstream
     dsEnd <- pmin(endpos[ix] + streamFrame, size)
     dsStart <- pmin(endpos[ix] + 1, size)
@@ -75,21 +73,18 @@ marking <- function(dataset,
 
     #now get the non-wearing gap
     #frame is the gap allowed between time section.  ie if 90 minutes allowed
-    #between two wearing sections, them frame = 90
-    endgap <- endpos[-length(endpos)]
-    startgap <- startpos[-1]
-    gap <- startgap - endgap
-    endgap[gap <= frame] <- NA
-    startgap[gap <= frame] <- NA
-    startgap <- c(startpos[1], startgap)
-    endgap <- c(endgap, endpos[length(endpos)])
-    newstartpos <- startgap[!is.na(startgap)]
-    newendpos <- endgap[!is.na(endgap)]
-    togWear <- mapply(seq, newstartpos, newendpos)
-    for(w in seq_along(togWear)) {
-        wearing[togWear[[w]]] <- 'w'
+    #between two wearing sections, then frame = 90
+    gaplen <- length(endpos)
+    if(gaplen > 0) {
+        endgap <- endpos[-gaplen]
+        startgap <- startpos[-1]
+        gap <- which((startgap - endgap) > frame)
+        newstartpos <- c(startpos[1], startgap[gap])
+        newendpos <- c(endgap[gap], endpos[gaplen])
+        togWear <- mapply(seq, newstartpos, newendpos)
+        wearing[unlist(togWear)] <- 'w'    
+        wearing[size] <- wearing[size-1]
     }
-    wearing[size] <- wearing[size-1]
     wearing[is.na(ct1)] <- NA
     dataset[,newcolname] <- as.factor(wearing)
     dataset

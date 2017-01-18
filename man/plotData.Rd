@@ -4,7 +4,7 @@
 \alias{plotData}
 \title{Plot Accelerometer Data over Time}
 \usage{
-plotData(data, day = NULL, start = NULL, end = NULL)
+plotData(data, day = NULL, start = NULL, end = NULL, cts = "counts")
 }
 \arguments{
 \item{data}{Data with classified wear and nonwear status from
@@ -15,6 +15,8 @@ plotData(data, day = NULL, start = NULL, end = NULL)
 \item{start}{Define a starting time for plot.}
 
 \item{end}{Define a ending time for plot.}
+
+\item{cts}{The name of the counts column. The default is "axis1".}
 }
 \value{
 Plot with midnight marking.
@@ -39,13 +41,13 @@ data1m = wearingMarking(dataset = mydata1m,
                        newcolname = "wearing")
 
 ## plot the whole data
-plotData(data=data1m)
+plotData(data=data1m, cts = "counts")
 
 ## plot the data from 60 min to 900 min
-plotData(data=data1m, start=60, end=900)
+plotData(data=data1m, start=60, end=900, cts = "counts")
 
 ## plot the data for day 2
-plotData(data=data1m, day=2)
+plotData(data=data1m, day=2, cts = "counts")
 }
 \author{
 Leena Choi \email{leena.choi@Vanderbilt.Edu}

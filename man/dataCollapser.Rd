@@ -16,7 +16,8 @@ collapsed.}
 second data to minute data, set by = 60; to collapse 10-second data to minute
 data, set by = 60.}
 
-\item{col}{The column name for counts.}
+\item{col}{The column name(s) to collapse.  If not provided, will default to
+all numeric columns.}
 
 \item{func}{A method for collapsing counts. The default is the summation of
 counts.}

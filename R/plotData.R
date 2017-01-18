@@ -9,6 +9,7 @@
 #' @param day A part of data during a user specified day for plot.
 #' @param start Define a starting time for plot.
 #' @param end Define a ending time for plot.
+#' @param cts The name of the counts column. The default is "axis1".
 #'
 #' @return Plot with midnight marking.
 #'
@@ -32,16 +33,16 @@
 #'                        newcolname = "wearing")
 #'
 #' ## plot the whole data
-#' plotData(data=data1m)
+#' plotData(data=data1m, cts = "counts")
 #'
 #' ## plot the data from 60 min to 900 min
-#' plotData(data=data1m, start=60, end=900)
+#' plotData(data=data1m, start=60, end=900, cts = "counts")
 #'
 #' ## plot the data for day 2
-#' plotData(data=data1m, day=2)
+#' plotData(data=data1m, day=2, cts = "counts")
 #' @export
 
-plotData <- function(data, day=NULL, start=NULL, end=NULL) {
+plotData <- function(data, day=NULL, start=NULL, end=NULL, cts='axis1') {
     stopifnot('days' %in% names(data))
     findMidnight <- function(data) {
         mm <- c(0, diff(data[,'days']))
@@ -59,7 +60,7 @@ plotData <- function(data, day=NULL, start=NULL, end=NULL) {
         dd <- data[seq(start,end),]
     }
     midnightMark <- findMidnight(dd)
-    plot(dd[,'counts'], type="l", xlab="Time", ylab="Counts")
+    plot(dd[,cts], type="l", xlab="Time", ylab="Counts")
     abline(v=midnightMark, lty=2, lwd=1.5, col=4)
     text(midnightMark, 0, pos=1, "0 AM", cex=0.8, col=4)
 }

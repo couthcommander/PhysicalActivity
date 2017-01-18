@@ -4,7 +4,7 @@
 \alias{readCountsData}
 \title{Convert Accelerometer Output Data to Correct Data Format}
 \usage{
-readCountsData(filename, ctPerSec, axes = 0)
+readCountsData(filename, ctPerSec, mode = 0)
 }
 \arguments{
 \item{filename}{A filename of accelerometer output to be read.}
@@ -14,11 +14,11 @@ number of counting will be performed in every second. For examples: for 1-sec
 epoch data, set ctPerSec = 1; for 10-sec epoch data, set ctPerSec = 1/10; for
 1-min epoch data, set ctPerSec = 1/60.}
 
-\item{axes}{The number of axes collected with the accelerometer.  Defaults to
-zero which means only the number of steps are stored.}
+\item{mode}{The mode of the ActiLife dat file.  Defaults to 0, and should be
+listed in the file header.}
 }
 \value{
-Data with the correct format (TimeStamp, counts) to be used for
+Data with the correct format (TimeStamp, axis1) to be used for
 \code{\link{wearingMarking}}.
 }
 \description{
