@@ -78,7 +78,7 @@ summaryData <- function(data, validCut = 600, perMinuteCts = 1,
         unit <- paste(epoch, "sec")
     }
     catWeekend <- function(day) {
-        factor(day %in% c('Saturday', 'Sunday'),
+        factor(day %in% c('Saturday', 'Sunday'), levels = c(FALSE, TRUE),
                labels = c('weekday', 'weekend'))
     }
     ctsPerDay <- 1440 * perMinuteCts
