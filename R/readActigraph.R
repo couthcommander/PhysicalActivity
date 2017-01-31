@@ -39,12 +39,17 @@ readActigraph <- function(datfile, convertTime=TRUE) {
                     paste(colNames, collapse=", "), sep=', ')
     qry <- sprintf("SELECT %s FROM data", select)
     dat <- queryActigraph(datfile, qry)
-    if(all(c('axis1', 'axis2', 'axis3') %in% colNames)) {
-        dat[,'vm'] <- ceiling(sqrt(rowSums(dat[,c('axis1','axis2','axis3')]^2)))
-    }
-    if(convertTime) {
-        # timezone will be UTC
-        dat[,'TimeStamp'] <- timeFromYear1(as.numeric(dat[,'TimeStamp']))
+    if(nrow(dat) == 0L) {
+        warning('the agd file contained no data', call. = FALSE)
+    } else {
+        axes <- c('axis1', 'axis2', 'axis3')
+        if(all(axes %in% colNames)) {
+            dat[,'vm'] <- ceiling(sqrt(rowSums(dat[,axes]^2)))
+        }
+        if(convertTime) {
+            # timezone will be UTC
+            dat[,'TimeStamp'] <- timeFromYear1(as.numeric(dat[,'TimeStamp']))
+        }
     }
     attr(dat, 'metadata') <- meta
     dat
