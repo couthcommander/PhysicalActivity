@@ -123,8 +123,9 @@ modeNames <- function(mode) {
     modes <- cbind(mode=seq(nm)-1, binary=apply(modes, 1, paste, collapse=''),
                    modes)
     mymode <- unlist(modes[mode+1,])
-    modename <- c('axis1', 'axis2', 'axis3', 'steps', 'hr', 'lux', 'incline')
-    # can't confirm hr/lux/incline
-    active <- c(1, mymode[c('axis2','axis3','steps')], 0, 0, 0) == 1
+    modename <- c('axis1', 'axis2', 'axis3', 'steps', 'hr', 'lux', 'inclineOff',
+                  'inclineStanding', 'inclineSitting', 'inclineLying')
+    active <- c(axis1=1, mymode[c('axis2','axis3','steps','hr','lux')],
+                rep(mymode['incline'], 4)) == 1
     modename[active]
 }

@@ -4,7 +4,7 @@
 \alias{plotData}
 \title{Plot Accelerometer Data over Time}
 \usage{
-plotData(data, day = NULL, start = NULL, end = NULL, cts = "counts")
+plotData(data, day = NULL, start = NULL, end = NULL, cts = "axis1")
 }
 \arguments{
 \item{data}{Data with classified wear and nonwear status from
