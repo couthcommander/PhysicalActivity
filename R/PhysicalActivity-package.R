@@ -46,7 +46,7 @@
 #'
 #' sumVct(data1m, id="sdata1m")
 #'
-#' plotData(data=data1m)
+#' plotData(data=data1m, cts="counts")
 #'
 #' summaryData(data=data1m, validCut=600, perMinuteCts=1, markingString = "w")
 "_PACKAGE"
