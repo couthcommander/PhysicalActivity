@@ -4,7 +4,8 @@
 \alias{plotData}
 \title{Plot Accelerometer Data over Time}
 \usage{
-plotData(data, day = NULL, start = NULL, end = NULL, cts = "axis1")
+plotData(data, day = NULL, start = NULL, end = NULL, cts = "axis1",
+  TS = "TimeStamp")
 }
 \arguments{
 \item{data}{Data with classified wear and nonwear status from
@@ -17,6 +18,8 @@ plotData(data, day = NULL, start = NULL, end = NULL, cts = "axis1")
 \item{end}{Define a ending time for plot.}
 
 \item{cts}{The name of the counts column. The default is "axis1".}
+
+\item{TS}{The column name for timestamp. The default is "TimeStamp".}
 }
 \value{
 Plot with midnight marking.

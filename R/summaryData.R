@@ -21,6 +21,7 @@
 #' data with 1-sec epoch, set perMinuteCts = 60.
 #' @param markingString Option for summarizing wear (markingString = "w") or
 #' nonwear time (markingString = "nw").
+#' @param TS The column name for timestamp. The default is "TimeStamp".
 #'
 #' @return
 #' \item{unit}{epoch for data.}
@@ -41,6 +42,7 @@
 #' during weekdays and weekends.}
 #' \item{meanWeartimeOverallValidDays}{the mean wear (nonwear) time for overall
 #' valid days.}
+#' \item{dayInfo}{information about each day of wear.}
 #'
 #' @template ref2010
 #'
@@ -67,7 +69,7 @@
 #' @export
 
 summaryData <- function(data, validCut = 600, perMinuteCts = 1,
-                        markingString = "w") {
+                        markingString = "w", TS = "TimeStamp") {
     stopifnot('weekday' %in% names(data))
     if(perMinuteCts==1) {
         unit <- "1 min"
@@ -81,46 +83,45 @@ summaryData <- function(data, validCut = 600, perMinuteCts = 1,
         factor(day %in% c('Saturday', 'Sunday'), levels = c(FALSE, TRUE),
                labels = c('weekday', 'weekend'))
     }
-    ctsPerDay <- 1440 * perMinuteCts
+    minPerDay <- function(timerange) {
+        as.numeric(difftime(timerange[2], timerange[1], units='mins')) + 1
+    }
     validCut <- validCut * perMinuteCts
     data[,'weekend'] <- catWeekend(data[,'weekday'])
+    dayLabel <- unique(data[,c('days','weekday','weekend')])
+    totalNumDays <- nrow(dayLabel)
+    ts <- data[,TS]
+    minCnts <- sapply(tapply(ts, data[,'days'], range), minPerDay)
+    obsCnts <- tapply(seq(nrow(data)), data[,'days'], length)
+    ix <- match(dayLabel[,'days'], names(minCnts))
+    dayLabel <- cbind(dayLabel, minutes=minCnts[ix], obs=obsCnts[ix])
     # total number of week and weekend days
-    totWWe <- tapply(data[,'weekend'], data[,'weekend'], length) / ctsPerDay
-    totWWe[is.na(totWWe)] <- 0
-    # total number of days
-    totalNumDays <- nrow(data) / ctsPerDay
-    totalNumDays[is.na(totalNumDays)] <- 0
+    totWWe <- tapply(seq(totalNumDays), dayLabel[,'weekend'], length)
     wearTime <- sumVct(data, markingString = markingString)
     wearTime[,'weekend'] <- catWeekend(wearTime[,'weekday'])
     wearTimeByDay <- tapply(wearTime[,'duration'], wearTime[,'days'],
                             sum, na.rm=TRUE)
-    validWearTimeByDay <- wearTimeByDay[wearTimeByDay > validCut]
-    valid.days <- as.numeric(names(validWearTimeByDay))
-    valid.wearTime <- wearTime[wearTime[,'days'] %in% valid.days,]
-    # valid wear time
-    val.WT <- wearTime[wearTime[,'days'] %in% valid.days,]
-    # weekend indicator for valid time
-    valid.WE <- data[data[,'days'] %in% valid.days, 'weekend']
-    # total number of week and weekend days for valid days
-    totalValidNumWeekWeekend <- tapply(valid.WE, valid.WE, length) / ctsPerDay
-    totalValidNumWeekWeekend[is.na(totalValidNumWeekWeekend)] <- 0
+    ix <- match(dayLabel[,'days'], names(wearTimeByDay))
+    dayLabel <- cbind(dayLabel, wearTime=wearTimeByDay[ix])
+    validWearTimeByDay <- wearTimeByDay[wearTimeByDay >= validCut]
+    vDayLabel <- dayLabel[dayLabel[,'wearTime'] >= validCut,]
     # total number of days for valid days
-    totalValidNumDays <- length(valid.WE) / ctsPerDay
-    totalValidNumDays[is.na(totalValidNumDays)] <- 0
+    totalValidNumDays <- nrow(vDayLabel)
+    # total number of week and weekend days for valid days
+    vtotWWe <- tapply(seq(totalValidNumDays), vDayLabel[,'weekend'], length)
     # wear time duration by day on valid days
-    val.WTD <- tapply(val.WT[,'duration'], val.WT[,'weekend'], sum, na.rm=TRUE)
-    meanWeartimeValidDays <- val.WTD / totalValidNumWeekWeekend
-    meanWeartimeValidDays[is.na(meanWeartimeValidDays)] <- 0
-    meanWeartimeOverallValidDays <- sum(val.WTD, na.rm=TRUE) / totalValidNumDays
-    meanWeartimeOverallValidDays[is.na(meanWeartimeOverallValidDays)] <- 0
+    meanWeartime <- tapply(vDayLabel[,'wearTime'],
+                                    vDayLabel[,'weekend'], mean, na.rm=TRUE)
+    meanWeartimeOverall <- mean(vDayLabel[,'wearTime'], na.rm=TRUE)
     list(unit=unit, totalNumDays=totalNumDays,
         totalNumWeekWeekend=totWWe,
         validCut=validCut,
         totalValidNumDays=totalValidNumDays,
-        totalValidNumWeekWeekend=totalValidNumWeekWeekend,
+        totalValidNumWeekWeekend=vtotWWe,
         wearTimeByDay=wearTimeByDay,
         validWearTimeByDay=validWearTimeByDay,
-        meanWeartimeValidDays=meanWeartimeValidDays,
-        meanWeartimeOverallValidDays=meanWeartimeOverallValidDays
+        meanWeartimeValidDays=meanWeartime,
+        meanWeartimeOverallValidDays=meanWeartimeOverall,
+        dayInfo=dayLabel
     )
 }

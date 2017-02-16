@@ -10,6 +10,7 @@
 #' @param start Define a starting time for plot.
 #' @param end Define a ending time for plot.
 #' @param cts The name of the counts column. The default is "axis1".
+#' @param TS The column name for timestamp. The default is "TimeStamp".
 #'
 #' @return Plot with midnight marking.
 #'
@@ -42,7 +43,8 @@
 #' plotData(data=data1m, day=2, cts = "counts")
 #' @export
 
-plotData <- function(data, day=NULL, start=NULL, end=NULL, cts='axis1') {
+plotData <- function(data, day=NULL, start=NULL, end=NULL, cts='axis1',
+                     TS = "TimeStamp") {
     stopifnot('days' %in% names(data))
     findMidnight <- function(data) {
         mm <- c(0, diff(data[,'days']))
@@ -63,4 +65,12 @@ plotData <- function(data, day=NULL, start=NULL, end=NULL, cts='axis1') {
     plot(dd[,cts], type="l", xlab="Time", ylab="Counts")
     abline(v=midnightMark, lty=2, lwd=1.5, col=4)
     text(midnightMark, 0, pos=1, "0 AM", cex=0.8, col=4)
+    tzs <- as.POSIXlt(dd[,TS])$zone
+    if(length(table(tzs)) > 1) {
+        yval <- max(dd[,cts])
+        dst <- which(tzs != c(tzs[-1], tzs[length(tzs)]))
+        abline(v=dst+0.5, lty=3, lwd=2, col='red')
+        text(dst+0.5, yval, pos=2, tzs[dst], cex=0.8, col='red')
+        text(dst+0.5, yval, pos=4, tzs[dst+1], cex=0.8, col='red')
+    }
 }

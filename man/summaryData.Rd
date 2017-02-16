@@ -4,7 +4,8 @@
 \alias{summaryData}
 \title{Summarize Classified Wear Time by Daily Basis}
 \usage{
-summaryData(data, validCut = 600, perMinuteCts = 1, markingString = "w")
+summaryData(data, validCut = 600, perMinuteCts = 1, markingString = "w",
+  TS = "TimeStamp")
 }
 \arguments{
 \item{data}{Data with classified wear (nonwear) status by
@@ -20,6 +21,8 @@ data with 1-sec epoch, set perMinuteCts = 60.}
 
 \item{markingString}{Option for summarizing wear (markingString = "w") or
 nonwear time (markingString = "nw").}
+
+\item{TS}{The column name for timestamp. The default is "TimeStamp".}
 }
 \value{
 \item{unit}{epoch for data.}
@@ -40,6 +43,7 @@ day.}
 during weekdays and weekends.}
 \item{meanWeartimeOverallValidDays}{the mean wear (nonwear) time for overall
 valid days.}
+\item{dayInfo}{information about each day of wear.}
 }
 \description{
 This function summarizes accelerometer data and classified wear or nonwear

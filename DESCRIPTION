@@ -1,6 +1,6 @@
 Package: PhysicalActivity
-Version: 0.1-3
-Date: 2017-01-15
+Version: 0.1-4
+Date: 2017-02-16
 Title: Process Physical Activity Accelerometer Data
 Authors@R: c(person("Leena", "Choi", role = c("aut", "cre"),
     email = "leena.choi@Vanderbilt.Edu"),
