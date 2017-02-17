@@ -71,12 +71,12 @@
 summaryData <- function(data, validCut = 600, perMinuteCts = 1,
                         markingString = "w", TS = "TimeStamp") {
     stopifnot('weekday' %in% names(data))
+    epoch <- 60 / perMinuteCts
     if(perMinuteCts==1) {
         unit <- "1 min"
     } else if(perMinuteCts==60) {
         unit <- "1 sec"
     } else {
-        epoch <- 60 / perMinuteCts
         unit <- paste(epoch, "sec")
     }
     catWeekend <- function(day) {
@@ -84,7 +84,8 @@ summaryData <- function(data, validCut = 600, perMinuteCts = 1,
                labels = c('weekday', 'weekend'))
     }
     minPerDay <- function(timerange) {
-        as.numeric(difftime(timerange[2], timerange[1], units='mins')) + epoch
+        dx <- epoch / 60
+        as.numeric(difftime(timerange[2], timerange[1], units='mins')) + dx
     }
     validCut <- validCut * perMinuteCts
     data[,'weekend'] <- catWeekend(data[,'weekday'])
