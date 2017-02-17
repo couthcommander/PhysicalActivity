@@ -84,7 +84,7 @@ summaryData <- function(data, validCut = 600, perMinuteCts = 1,
                labels = c('weekday', 'weekend'))
     }
     minPerDay <- function(timerange) {
-        as.numeric(difftime(timerange[2], timerange[1], units='mins')) + 1
+        as.numeric(difftime(timerange[2], timerange[1], units='mins')) + epoch
     }
     validCut <- validCut * perMinuteCts
     data[,'weekend'] <- catWeekend(data[,'weekday'])
