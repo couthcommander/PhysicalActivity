@@ -42,6 +42,10 @@
 #'
 #' ## plot the data for day 2
 #' plotData(data=data1m, day=2, cts = "counts")
+#'
+#' ## include summaryData
+#' sumdat <- summaryData(data=data1m)
+#' plotData(data=data1m, cts = "counts", summary=sumdat)
 #' @export
 
 plotData <- function(data, day=NULL, start=NULL, end=NULL, cts='axis1',

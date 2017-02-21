@@ -53,6 +53,10 @@ plotData(data=data1m, start=60, end=900, cts = "counts")
 
 ## plot the data for day 2
 plotData(data=data1m, day=2, cts = "counts")
+
+## include summaryData
+sumdat <- summaryData(data=data1m)
+plotData(data=data1m, cts = "counts", summary=sumdat)
 }
 \author{
 Leena Choi \email{leena.choi@Vanderbilt.Edu}
