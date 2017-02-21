@@ -105,7 +105,8 @@ summaryData <- function(data, validCut = 600, perMinuteCts = 1,
     ix <- match(dayLabel[,'days'], names(wearTimeByDay))
     dayLabel <- cbind(dayLabel, wearTime=wearTimeByDay[ix])
     dayLabel[is.na(dayLabel[,'wearTime']),'wearTime'] <- 0
-    wearTimeByDay <- setNames(dayLabel[,'wearTime'], dayLabel[,'days'])
+    wearTimeByDay <- dayLabel[,'wearTime']
+    names(wearTimeByDay) <- dayLabel[,'days']
     validWearTimeByDay <- wearTimeByDay[wearTimeByDay >= validCut]
     vDayLabel <- dayLabel[dayLabel[,'wearTime'] >= validCut,]
     # total number of days for valid days

@@ -65,8 +65,11 @@ plotData <- function(data, day=NULL, start=NULL, end=NULL, cts='axis1',
     midnightMark <- findMidnight(dd)
     yval <- max(dd[,cts])
     plot(dd[,cts], type="l", xlab="Time", ylab="Counts", yaxs="i")
-    abline(v=midnightMark, lty=2, lwd=1.5, col=4)
     pnts <- c(0, midnightMark, nrow(dd))
+    if(length(midnightMark)) {
+        abline(v=midnightMark, lty=2, lwd=1.5, col=4)
+        mtext("0 AM", side=3, line=0, at=midnightMark, cex=0.8, col=4)
+    }
 #     if(length(pnts) > 3) {
 #         colopt <- c(rgb(211/255, 211/255, 211/255, 0.25),
 #                     rgb(128/255, 128/255, 128/255, 0.25))
@@ -76,7 +79,6 @@ plotData <- function(data, day=NULL, start=NULL, end=NULL, cts='axis1',
 #                     col=colopt[i %% 2 + 1])
 #         }
 #     }
-    mtext("0 AM", side=3, line=0, at=midnightMark, cex=0.8, col=4)
     tzs <- as.POSIXlt(dd[,TS])$zone
     if(length(table(tzs)) > 1) {
         dst <- which(tzs != c(tzs[-1], tzs[length(tzs)]))
@@ -85,7 +87,10 @@ plotData <- function(data, day=NULL, start=NULL, end=NULL, cts='axis1',
         text(dst+0.5, yval, pos=4, tzs[dst+1], cex=0.8, col='red')
     }
     if(!is.null(summary)) {
+        obsday <- unique(dd[,'days'])
         wtd <- summary[['wearTimeByDay']]
+        # exclude days not requested
+        wtd <- wtd[names(wtd) %in% obsday]
         vwtd <- names(summary[['validWearTimeByDay']])
         if(!is.null(wtd) && !is.null(vwtd)) {
             colopt <- ifelse(names(wtd) %in% vwtd, 2, 'darkgray')
