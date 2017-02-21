@@ -104,12 +104,20 @@ summaryData <- function(data, validCut = 600, perMinuteCts = 1,
                             sum, na.rm=TRUE)
     ix <- match(dayLabel[,'days'], names(wearTimeByDay))
     dayLabel <- cbind(dayLabel, wearTime=wearTimeByDay[ix])
+    dayLabel[is.na(dayLabel[,'wearTime']),'wearTime'] <- 0
+    wearTimeByDay <- setNames(dayLabel[,'wearTime'], dayLabel[,'days'])
     validWearTimeByDay <- wearTimeByDay[wearTimeByDay >= validCut]
     vDayLabel <- dayLabel[dayLabel[,'wearTime'] >= validCut,]
     # total number of days for valid days
     totalValidNumDays <- nrow(vDayLabel)
     # total number of week and weekend days for valid days
     vtotWWe <- tapply(seq(totalValidNumDays), vDayLabel[,'weekend'], length)
+    if(!is.na(totWWe['weekday']) && is.na(vtotWWe['weekday'])) {
+        vtotWWe['weekday'] <- 0
+    }
+    if(!is.na(totWWe['weekend']) && is.na(vtotWWe['weekend'])) {
+        vtotWWe['weekend'] <- 0
+    }
     # wear time duration by day on valid days
     meanWeartime <- tapply(vDayLabel[,'wearTime'],
                                     vDayLabel[,'weekend'], mean, na.rm=TRUE)

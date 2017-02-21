@@ -11,6 +11,7 @@
 #' @param end Define a ending time for plot.
 #' @param cts The name of the counts column. The default is "axis1".
 #' @param TS The column name for timestamp. The default is "TimeStamp".
+#' @param summary List output of \code{\link{summaryData}} function.
 #'
 #' @return Plot with midnight marking.
 #'
@@ -44,7 +45,7 @@
 #' @export
 
 plotData <- function(data, day=NULL, start=NULL, end=NULL, cts='axis1',
-                     TS = "TimeStamp") {
+                     TS = "TimeStamp", summary=NULL) {
     stopifnot('days' %in% names(data))
     findMidnight <- function(data) {
         mm <- c(0, diff(data[,'days']))
@@ -62,15 +63,34 @@ plotData <- function(data, day=NULL, start=NULL, end=NULL, cts='axis1',
         dd <- data[seq(start,end),]
     }
     midnightMark <- findMidnight(dd)
-    plot(dd[,cts], type="l", xlab="Time", ylab="Counts")
+    yval <- max(dd[,cts])
+    plot(dd[,cts], type="l", xlab="Time", ylab="Counts", yaxs="i")
     abline(v=midnightMark, lty=2, lwd=1.5, col=4)
-    text(midnightMark, 0, pos=1, "0 AM", cex=0.8, col=4)
+    pnts <- c(0, midnightMark, nrow(dd))
+#     if(length(pnts) > 3) {
+#         colopt <- c(rgb(211/255, 211/255, 211/255, 0.25),
+#                     rgb(128/255, 128/255, 128/255, 0.25))
+#         for(i in seq(length(pnts)-1)) {
+#             polygon(c(pnts[i], pnts[i], pnts[i+1], pnts[i+1]),
+#                     c(0, yval, yval, 0), border=NA,
+#                     col=colopt[i %% 2 + 1])
+#         }
+#     }
+    mtext("0 AM", side=3, line=0, at=midnightMark, cex=0.8, col=4)
     tzs <- as.POSIXlt(dd[,TS])$zone
     if(length(table(tzs)) > 1) {
-        yval <- max(dd[,cts])
         dst <- which(tzs != c(tzs[-1], tzs[length(tzs)]))
         abline(v=dst+0.5, lty=3, lwd=2, col='red')
         text(dst+0.5, yval, pos=2, tzs[dst], cex=0.8, col='red')
         text(dst+0.5, yval, pos=4, tzs[dst+1], cex=0.8, col='red')
+    }
+    if(!is.null(summary)) {
+        wtd <- summary[['wearTimeByDay']]
+        vwtd <- names(summary[['validWearTimeByDay']])
+        if(!is.null(wtd) && !is.null(vwtd)) {
+            colopt <- ifelse(names(wtd) %in% vwtd, 2, 'darkgray')
+            dayMark <- pnts[-1] - diff(pnts) / 2
+            text(dayMark, yval, pos=1, wtd, cex=0.7, col=colopt)
+        }
     }
 }
