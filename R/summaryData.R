@@ -93,11 +93,11 @@ summaryData <- function(data, validCut = 600, perMinuteCts = 1,
     totalNumDays <- nrow(dayLabel)
     ts <- data[,TS]
     minCnts <- sapply(tapply(ts, data[,'days'], range), minPerDay)
-    obsCnts <- tapply(seq(nrow(data)), data[,'days'], length)
+    obsCnts <- tapply(seq_len(nrow(data)), data[,'days'], length)
     ix <- match(dayLabel[,'days'], names(minCnts))
     dayLabel <- cbind(dayLabel, minutes=minCnts[ix], obs=obsCnts[ix])
     # total number of week and weekend days
-    totWWe <- tapply(seq(totalNumDays), dayLabel[,'weekend'], length)
+    totWWe <- tapply(seq_len(totalNumDays), dayLabel[,'weekend'], length)
     wearTime <- sumVct(data, markingString = markingString)
     wearTime[,'weekend'] <- catWeekend(wearTime[,'weekday'])
     wearTimeByDay <- tapply(wearTime[,'duration'], wearTime[,'days'],
@@ -112,7 +112,7 @@ summaryData <- function(data, validCut = 600, perMinuteCts = 1,
     # total number of days for valid days
     totalValidNumDays <- nrow(vDayLabel)
     # total number of week and weekend days for valid days
-    vtotWWe <- tapply(seq(totalValidNumDays), vDayLabel[,'weekend'], length)
+    vtotWWe <- tapply(seq_len(totalValidNumDays), vDayLabel[,'weekend'], length)
     if(!is.na(totWWe['weekday']) && is.na(vtotWWe['weekday'])) {
         vtotWWe['weekday'] <- 0
     }
