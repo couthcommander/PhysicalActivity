@@ -31,6 +31,12 @@ This function makes plot for accelerometer collected data (counts) over time
 for the whole monitor period, or a user specified time period or day with a
 midnight marking to separate monitored days.
 }
+\details{
+If a local time-zone is specified for \code{wearkingMarking}, it is possible
+that daylight savings starts or ends during the period shown.  In this case
+a dotted line will indicate its position and the appropriate time-zone
+abbreviations will be included.
+}
 \examples{
 data(dataSec)
 

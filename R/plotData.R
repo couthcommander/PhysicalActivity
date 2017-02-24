@@ -4,6 +4,11 @@
 #' for the whole monitor period, or a user specified time period or day with a
 #' midnight marking to separate monitored days.
 #'
+#' If a local time-zone is specified for \code{wearkingMarking}, it is possible
+#' that daylight savings starts or ends during the period shown.  In this case
+#' a dotted line will indicate its position and the appropriate time-zone
+#' abbreviations will be included.
+#'
 #' @param data Data with classified wear and nonwear status from
 #' \code{\link{wearingMarking}}.
 #' @param day A part of data during a user specified day for plot.
@@ -87,8 +92,8 @@ plotData <- function(data, day=NULL, start=NULL, end=NULL, cts='axis1',
     if(length(table(tzs)) > 1) {
         dst <- which(tzs != c(tzs[-1], tzs[length(tzs)]))
         abline(v=dst+0.5, lty=3, lwd=2, col='red')
-        text(dst+0.5, yval, pos=2, tzs[dst], cex=0.8, col='red')
-        text(dst+0.5, yval, pos=4, tzs[dst+1], cex=0.8, col='red')
+        text(dst+0.5, yval * 0.9, pos=2, tzs[dst], cex=0.8, col='red')
+        text(dst+0.5, yval * 0.9, pos=4, tzs[dst+1], cex=0.8, col='red')
     }
     if(!is.null(summary)) {
         obsday <- unique(dd[,'days'])
