@@ -1,10 +1,11 @@
 Package: PhysicalActivity
-Version: 0.1-4
-Date: 2017-02-16
+Version: 0.1-5
+Date: 2017-03-17
 Title: Process Physical Activity Accelerometer Data
 Authors@R: c(person("Leena", "Choi", role = c("aut", "cre"),
     email = "leena.choi@Vanderbilt.Edu"),
     person("Zhouwen", "Liu", role = "aut"),
+    person("Cole", "Beck", role = "aut"),
     person("Charles E.", "Matthews", role = "aut"),
     person("Maciej S.", "Buchowski", role = "aut"))
 Description: This package contains functions to classify monitor wear and

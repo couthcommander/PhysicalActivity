@@ -30,6 +30,7 @@
 #'
 #' @keywords accelerometer nonwear process
 #' @importFrom graphics abline plot text mtext
+#' @importFrom stats pt sd
 #'
 #' @examples
 #' data(dataSec)
