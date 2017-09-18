@@ -22,6 +22,8 @@
 #' @param markingString Option for summarizing wear (markingString = "w") or
 #' nonwear time (markingString = "nw").
 #' @param TS The column name for timestamp. The default is "TimeStamp".
+#' @param delivery data.frame. Delivery information created by
+#" \code{\link{markDelivery}}.
 #'
 #' @return
 #' \item{unit}{epoch for data.}
@@ -36,6 +38,7 @@
 #' weekend days based on a user defined cutoff for the total minutes of
 #' classified monitor wear time per day.}
 #' \item{wearTimeByDay}{the classified total wear (nonwear) time by day.}
+#' \item{deliveryDays}{marked delivery days.}
 #' \item{validWearTimeByDay}{the classified total wear (nonwear) time by valid
 #' day.}
 #' \item{meanWeartimeValidDays}{the mean wear (nonwear) time for valid days
@@ -43,13 +46,16 @@
 #' \item{meanWeartimeOverallValidDays}{the mean wear (nonwear) time for overall
 #' valid days.}
 #' \item{dayInfo}{information about each day of wear.}
+#' \item{intensity}{total time in hours of physical activity intensity by day.}
+#' \item{meanValidIntensity}{mean PAI-level for valid days.}
 #'
 #' @template ref2010
 #'
 #' @templateVar author choi
 #' @template auth
 #'
-#' @seealso \code{\link{wearingMarking}}, \code{\link{sumVct}}
+#' @seealso \code{\link{wearingMarking}}, \code{\link{sumVct}},
+#' \code{\link{markPAI}}, \code{\link{markDelivery}}
 #'
 #' @examples
 #' data(dataSec)
@@ -68,9 +74,12 @@
 #' summaryData(data=data1m, validCut=600, perMinuteCts=1, markingString = "w")
 #' @export
 
-summaryData <- function(data, validCut = 600, perMinuteCts = 1,
-                        markingString = "w", TS = "TimeStamp") {
+summaryData <- function(data, validCut = getOption('pa.validCut'),
+                        perMinuteCts = 1, markingString = "w",
+                        TS = getOption('pa.timeStamp'), delivery = NULL) {
     stopifnot('weekday' %in% names(data))
+    usePAI <- 'pai' %in% names(data)
+    rmDel <- !is.null(delivery) && 'delivery' %in% names(delivery)
     epoch <- 60 / perMinuteCts
     if(perMinuteCts==1) {
         unit <- "1 min"
@@ -109,6 +118,18 @@ summaryData <- function(data, validCut = 600, perMinuteCts = 1,
     names(wearTimeByDay) <- dayLabel[,'days']
     validWearTimeByDay <- wearTimeByDay[wearTimeByDay >= validCut]
     vDayLabel <- dayLabel[dayLabel[,'wearTime'] >= validCut,]
+    # remove delivery dates
+    rmDelDays <- NULL
+    if(rmDel) {
+        delDay <- delivery[which(delivery[,'delivery'] == 1), 'day']
+        delDay <- intersect(delDay, vDayLabel[,'days'])
+        if(length(delDay)) {
+            dix <- match(delDay, vDayLabel[,'days'])
+            rmDelDays <- validWearTimeByDay[dix]
+            validWearTimeByDay <- validWearTimeByDay[-dix]
+            vDayLabel <- vDayLabel[-dix,]
+        }
+    }
     # total number of days for valid days
     totalValidNumDays <- nrow(vDayLabel)
     # total number of week and weekend days for valid days
@@ -123,15 +144,26 @@ summaryData <- function(data, validCut = 600, perMinuteCts = 1,
     meanWeartime <- tapply(vDayLabel[,'wearTime'],
                                     vDayLabel[,'weekend'], mean, na.rm=TRUE)
     meanWeartimeOverall <- mean(vDayLabel[,'wearTime'], na.rm=TRUE)
-    list(unit=unit, totalNumDays=totalNumDays,
+    res <- list(unit=unit, totalNumDays=totalNumDays,
         totalNumWeekWeekend=totWWe,
         validCut=validCut,
         totalValidNumDays=totalValidNumDays,
         totalValidNumWeekWeekend=vtotWWe,
         wearTimeByDay=wearTimeByDay,
+        deliveryDays = rmDelDays,
         validWearTimeByDay=validWearTimeByDay,
         meanWeartimeValidDays=meanWeartime,
         meanWeartimeOverallValidDays=meanWeartimeOverall,
         dayInfo=dayLabel
     )
+    if(usePAI) {
+        intLevel <- round(do.call(rbind, 
+                        tapply(data[,'pai'], data[,'days'], table)
+        ) / 60, 2)
+        vix <- match(vDayLabel[,'days'], rownames(intLevel))
+        validIntLevel <- colMeans(intLevel[vix,], na.rm = TRUE)
+        res[['intensity']] <- intLevel
+        res[['meanValidIntensity']] <- validIntLevel
+    }
+    res
 }

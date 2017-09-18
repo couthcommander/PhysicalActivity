@@ -53,8 +53,9 @@
 #' plotData(data=data1m, cts = "counts", summary=sumdat)
 #' @export
 
-plotData <- function(data, day=NULL, start=NULL, end=NULL, cts='axis1',
-                     TS = "TimeStamp", summary=NULL) {
+plotData <- function(data, day = NULL, start = NULL, end = NULL,
+                     cts = getOption('pa.cts'), TS = getOption('pa.timeStamp'),
+                     summary = NULL) {
     stopifnot('days' %in% names(data))
     findMidnight <- function(data) {
         mm <- c(0, diff(data[,'days']))

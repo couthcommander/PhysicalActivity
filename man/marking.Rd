@@ -4,7 +4,7 @@
 \alias{marking}
 \title{Marking Data with Wearing Tags}
 \usage{
-marking(dataset, frame, cts = "axis1", streamFrame = NULL,
+marking(dataset, frame, cts = getOption("pa.cts"), streamFrame = NULL,
   allowanceFrame = 2, newcolname = "wearing")
 }
 \arguments{

@@ -42,7 +42,7 @@
 #' sumVct(data1m, id="sdata1m", markingString = "nw")
 #' @export
 
-sumVct <- function(datavct, wearing = "wearing", TS = "TimeStamp",
+sumVct <- function(datavct, wearing = "wearing", TS = getOption('pa.timeStamp'),
                         markingString = "w", by = "days", id = NULL) {
     len <- as.numeric(table(datavct[,by]))
     len <- c(0, cumsum(len))

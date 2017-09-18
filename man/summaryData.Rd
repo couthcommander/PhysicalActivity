@@ -4,8 +4,8 @@
 \alias{summaryData}
 \title{Summarize Classified Wear Time by Daily Basis}
 \usage{
-summaryData(data, validCut = 600, perMinuteCts = 1, markingString = "w",
-  TS = "TimeStamp")
+summaryData(data, validCut = getOption("pa.validCut"), perMinuteCts = 1,
+  markingString = "w", TS = getOption("pa.timeStamp"), delivery = NULL)
 }
 \arguments{
 \item{data}{Data with classified wear (nonwear) status by
@@ -23,6 +23,8 @@ data with 1-sec epoch, set perMinuteCts = 60.}
 nonwear time (markingString = "nw").}
 
 \item{TS}{The column name for timestamp. The default is "TimeStamp".}
+
+\item{delivery}{data.frame. Delivery information created by}
 }
 \value{
 \item{unit}{epoch for data.}
@@ -37,6 +39,7 @@ defined cutoff for total minutes of wearing and the classified wearing time.}
 weekend days based on a user defined cutoff for the total minutes of
 classified monitor wear time per day.}
 \item{wearTimeByDay}{the classified total wear (nonwear) time by day.}
+\item{deliveryDays}{marked delivery days.}
 \item{validWearTimeByDay}{the classified total wear (nonwear) time by valid
 day.}
 \item{meanWeartimeValidDays}{the mean wear (nonwear) time for valid days
@@ -44,6 +47,8 @@ during weekdays and weekends.}
 \item{meanWeartimeOverallValidDays}{the mean wear (nonwear) time for overall
 valid days.}
 \item{dayInfo}{information about each day of wear.}
+\item{intensity}{total time in hours of physical activity intensity by day.}
+\item{meanValidIntensity}{mean PAI-level for valid days.}
 }
 \description{
 This function summarizes accelerometer data and classified wear or nonwear
@@ -83,6 +88,7 @@ Validation of Accelerometer Wear and Nonwear Time Classification Algorithm.
 Med Sci Sports Exerc. Jun 23 [Epub ahead of print].
 }
 \seealso{
-\code{\link{wearingMarking}}, \code{\link{sumVct}}
+\code{\link{wearingMarking}}, \code{\link{sumVct}},
+\code{\link{markPAI}}, \code{\link{markDelivery}}
 }
 

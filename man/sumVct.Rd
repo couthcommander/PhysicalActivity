@@ -4,7 +4,7 @@
 \alias{sumVct}
 \title{Summarize Wearing or Nonwearing Time Interval}
 \usage{
-sumVct(datavct, wearing = "wearing", TS = "TimeStamp",
+sumVct(datavct, wearing = "wearing", TS = getOption("pa.timeStamp"),
   markingString = "w", by = "days", id = NULL)
 }
 \arguments{

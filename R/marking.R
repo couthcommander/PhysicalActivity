@@ -25,7 +25,7 @@
 
 marking <- function(dataset,
                    frame,
-                   cts = "axis1",
+                   cts = getOption('pa.cts'),
                    streamFrame = NULL,
                    allowanceFrame = 2,
                    newcolname = "wearing") {
