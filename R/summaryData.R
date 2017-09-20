@@ -160,8 +160,12 @@ summaryData <- function(data, validCut = getOption('pa.validCut'),
         intLevel <- round(do.call(rbind, 
                         tapply(data[,'pai'], data[,'days'], table)
         ) / 60, 2)
-        vix <- match(vDayLabel[,'days'], rownames(intLevel))
-        validIntLevel <- colMeans(intLevel[vix,], na.rm = TRUE)
+        if(totalValidNumDays > 0) {
+            vix <- match(vDayLabel[,'days'], rownames(intLevel))
+            validIntLevel <- colMeans(intLevel[vix,,drop=FALSE], na.rm = TRUE)
+        } else {
+            validIntLevel <- NULL
+        }
         res[['intensity']] <- intLevel
         res[['meanValidIntensity']] <- validIntLevel
     }
