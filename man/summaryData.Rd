@@ -5,7 +5,8 @@
 \title{Summarize Classified Wear Time by Daily Basis}
 \usage{
 summaryData(data, validCut = getOption("pa.validCut"), perMinuteCts = 1,
-  markingString = "w", TS = getOption("pa.timeStamp"), delivery = NULL)
+  markingString = "w", TS = getOption("pa.timeStamp"),
+  cts = getOption("pa.cts"), delivery = NULL)
 }
 \arguments{
 \item{data}{Data with classified wear (nonwear) status by
@@ -23,6 +24,8 @@ data with 1-sec epoch, set perMinuteCts = 60.}
 nonwear time (markingString = "nw").}
 
 \item{TS}{The column name for timestamp. The default is "TimeStamp".}
+
+\item{cts}{The name of the counts column. The default is "axis1".}
 
 \item{delivery}{data.frame. Delivery information created by}
 }

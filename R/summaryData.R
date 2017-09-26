@@ -22,6 +22,7 @@
 #' @param markingString Option for summarizing wear (markingString = "w") or
 #' nonwear time (markingString = "nw").
 #' @param TS The column name for timestamp. The default is "TimeStamp".
+#' @param cts The name of the counts column. The default is "axis1".
 #' @param delivery data.frame. Delivery information created by
 #" \code{\link{markDelivery}}.
 #'
@@ -76,7 +77,8 @@
 
 summaryData <- function(data, validCut = getOption('pa.validCut'),
                         perMinuteCts = 1, markingString = "w",
-                        TS = getOption('pa.timeStamp'), delivery = NULL) {
+                        TS = getOption('pa.timeStamp'),
+                        cts = getOption('pa.cts'), delivery = NULL) {
     stopifnot('weekday' %in% names(data))
     usePAI <- 'pai' %in% names(data)
     rmDel <- !is.null(delivery) && 'delivery' %in% names(delivery)
@@ -114,6 +116,10 @@ summaryData <- function(data, validCut = getOption('pa.validCut'),
     ix <- match(dayLabel[,'days'], names(wearTimeByDay))
     dayLabel <- cbind(dayLabel, wearTime=wearTimeByDay[ix])
     dayLabel[is.na(dayLabel[,'wearTime']),'wearTime'] <- 0
+    ddAll <- data[data[, "wearing"] == markingString,]
+    mean.cnt <- round(tapply(ddAll[, cts], ddAll[, "days"], 'mean'), 1)
+    ix <- match(dayLabel[,'days'], names(mean.cnt))
+    dayLabel <- cbind(dayLabel, cnt.mean=mean.cnt[ix])
     wearTimeByDay <- dayLabel[,'wearTime']
     names(wearTimeByDay) <- dayLabel[,'days']
     validWearTimeByDay <- wearTimeByDay[wearTimeByDay >= validCut]
@@ -157,17 +163,23 @@ summaryData <- function(data, validCut = getOption('pa.validCut'),
         dayInfo=dayLabel
     )
     if(usePAI) {
-        intLevel <- round(do.call(rbind, 
-                        tapply(data[,'pai'], data[,'days'], table)
-        ) / 60, 2)
+        intLevel <- do.call(rbind, tapply(data[,'pai'], data[,'days'], table))
+        intLevelPerc <- intLevel / sum(intLevel, na.rm = TRUE)
+        names(intLevelPerc) <- paste0(names(intLevelPerc), '.perc')
+        intLevels <- c(intLevel, intLevelPerc)
         if(totalValidNumDays > 0) {
-            vix <- match(vDayLabel[,'days'], rownames(intLevel))
-            validIntLevel <- colMeans(intLevel[vix,,drop=FALSE], na.rm = TRUE)
+            vix <- match(vDayLabel[,'days'], rownames(intLevels))
+            cntCols <- grep('^.perc$', names(intLevels))
+            validIntLevel <- colMeans(intLevels[vix, cntCols, drop=FALSE],
+                                      na.rm = TRUE)
+            vilp <- validIntLevel / sum(validIntLevel, na.rm = TRUE)
+            names(vilp) <- names(intLevelPerc)
+            validIntLevels <- round(c(validIntLevel, vilp), 3)
         } else {
-            validIntLevel <- NULL
+            validIntLevels <- NULL
         }
-        res[['intensity']] <- intLevel
-        res[['meanValidIntensity']] <- validIntLevel
+        res[['intensity']] <- round(intLevels, 1)
+        res[['meanValidIntensity']] <- validIntLevels
     }
     res
 }
