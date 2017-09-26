@@ -164,15 +164,16 @@ summaryData <- function(data, validCut = getOption('pa.validCut'),
     )
     if(usePAI) {
         intLevel <- do.call(rbind, tapply(data[,'pai'], data[,'days'], table))
-        intLevelPerc <- intLevel / sum(intLevel, na.rm = TRUE)
+        getPerc <- function(x) x / sum(x, na.rm = TRUE)
+        intLevelPerc <- apply(intLevel, 1, getPerc)
         names(intLevelPerc) <- paste0(names(intLevelPerc), '.perc')
-        intLevels <- c(intLevel, intLevelPerc)
+        intLevels <- cbind(intLevel, intLevelPerc)
         if(totalValidNumDays > 0) {
             vix <- match(vDayLabel[,'days'], rownames(intLevels))
             cntCols <- grep('^.perc$', names(intLevels))
             validIntLevel <- colMeans(intLevels[vix, cntCols, drop=FALSE],
                                       na.rm = TRUE)
-            vilp <- validIntLevel / sum(validIntLevel, na.rm = TRUE)
+            vilp <- apply(validIntLevel, 1, getPerc)
             names(vilp) <- names(intLevelPerc)
             validIntLevels <- round(c(validIntLevel, vilp), 3)
         } else {
