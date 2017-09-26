@@ -165,21 +165,21 @@ summaryData <- function(data, validCut = getOption('pa.validCut'),
     if(usePAI) {
         intLevel <- do.call(rbind, tapply(data[,'pai'], data[,'days'], table))
         getPerc <- function(x) x / sum(x, na.rm = TRUE)
-        intLevelPerc <- apply(intLevel, 1, getPerc)
-        names(intLevelPerc) <- paste0(names(intLevelPerc), '.perc')
+        intLevelPerc <- round(t(apply(intLevel, 1, getPerc)), 2)
+        colnames(intLevelPerc) <- paste0(colnames(intLevelPerc), '.perc')
         intLevels <- cbind(intLevel, intLevelPerc)
         if(totalValidNumDays > 0) {
             vix <- match(vDayLabel[,'days'], rownames(intLevels))
-            cntCols <- grep('^.perc$', names(intLevels))
+            cntCols <- !grepl('.perc$', colnames(intLevels))
             validIntLevel <- colMeans(intLevels[vix, cntCols, drop=FALSE],
                                       na.rm = TRUE)
-            vilp <- apply(validIntLevel, 1, getPerc)
-            names(vilp) <- names(intLevelPerc)
-            validIntLevels <- round(c(validIntLevel, vilp), 3)
+            vilp <- getPerc(validIntLevel)
+            names(vilp) <- colnames(intLevelPerc)
+            validIntLevels <- round(c(validIntLevel, vilp), 2)
         } else {
             validIntLevels <- NULL
         }
-        res[['intensity']] <- round(intLevels, 1)
+        res[['intensity']] <- intLevels
         res[['meanValidIntensity']] <- validIntLevels
     }
     res
