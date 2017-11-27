@@ -73,6 +73,13 @@
 #'                        newcolname = "wearing")
 #'
 #' summaryData(data=data1m, validCut=600, perMinuteCts=1, markingString = "w")
+#'
+#' data(deliveryData)
+#' options(pa.cts = "vm")
+#' wm <- wearingMarking(dataset = deliveryData)
+#' dd <- markDelivery(wm)
+#' summaryData(wm, delivery = dd)
+#'
 #' @export
 
 summaryData <- function(data, validCut = getOption('pa.validCut'),
@@ -127,13 +134,17 @@ summaryData <- function(data, validCut = getOption('pa.validCut'),
     # remove delivery dates
     rmDelDays <- NULL
     if(rmDel) {
-        delDay <- delivery[which(delivery[,'delivery'] == 1), 'day']
-        delDay <- intersect(delDay, vDayLabel[,'days'])
-        if(length(delDay)) {
-            dix <- match(delDay, vDayLabel[,'days'])
-            rmDelDays <- validWearTimeByDay[dix]
+        delDay <- delivery[delivery[,'delivery'] == 1, 'day']
+        delDay1 <- intersect(delDay, vDayLabel[,'days'])
+        delDay2 <- intersect(delDay, dayLabel[,'days'])
+        if(length(delDay1)) {
+            dix <- match(delDay1, vDayLabel[,'days'])
             validWearTimeByDay <- validWearTimeByDay[-dix]
             vDayLabel <- vDayLabel[-dix,]
+        }
+        if(length(delDay2)) {
+            dix <- match(delDay2, dayLabel[,'days'])
+            rmDelDays <- wearTimeByDay[dix]
         }
     }
     # total number of days for valid days

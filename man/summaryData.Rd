@@ -81,6 +81,13 @@ data1m = wearingMarking(dataset = mydata1m,
                        newcolname = "wearing")
 
 summaryData(data=data1m, validCut=600, perMinuteCts=1, markingString = "w")
+
+data(deliveryData)
+options(pa.cts = "vm")
+wm <- wearingMarking(dataset = deliveryData)
+dd <- markDelivery(wm)
+summaryData(wm, delivery = dd)
+
 }
 \author{
 Leena Choi \email{leena.choi@Vanderbilt.Edu}

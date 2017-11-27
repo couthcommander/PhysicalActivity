@@ -52,18 +52,20 @@ data1m = wearingMarking(dataset = mydata1m,
                        allowanceFrame= 2, 
                        newcolname = "wearing")
 
+## change \\sQuote{cts} default from \\dQuote{axis1} to \\dQuote{counts}
+options(pa.cts = "counts")
 ## plot the whole data
-plotData(data=data1m, cts = "counts")
+plotData(data=data1m)
 
 ## plot the data from 60 min to 900 min
-plotData(data=data1m, start=60, end=900, cts = "counts")
+plotData(data=data1m, start=60, end=900)
 
 ## plot the data for day 2
-plotData(data=data1m, day=2, cts = "counts")
+plotData(data=data1m, day=2)
 
 ## include summaryData
 sumdat <- summaryData(data=data1m)
-plotData(data=data1m, cts = "counts", summary=sumdat)
+plotData(data=data1m, summary=sumdat)
 }
 \author{
 Leena Choi \email{leena.choi@Vanderbilt.Edu}

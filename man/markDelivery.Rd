@@ -34,18 +34,15 @@ A dataframe with summary information about daily counts.
 This function adds an indicator variable for deliver days.
 }
 \examples{
-data(dataSec)
+data(deliveryData)
 
-mydata1m = dataCollapser(dataSec, TS = "TimeStamp", col = "counts", by = 60)
+options(pa.cts = "vm")
+wm <- wearingMarking(dataset = deliveryData)
 
-data1m = wearingMarking(dataset = mydata1m,
-                       perMinuteCts = 1,
-                       cts = "counts")
-
-markDelivery(data1m, cts='counts')
-markDelivery(data1m, cts='counts', window='v', method='m')
-markDelivery(data1m, cts='counts', window='c', method='m')
-markDelivery(data1m, cts='counts', method='m')
-markDelivery(data1m, cts='counts', method='s')
+markDelivery(wm)
+markDelivery(wm, window='v', method='m')
+markDelivery(wm, window='c', method='m')
+markDelivery(wm, method='m')
+markDelivery(wm, method='s')
 }
 
