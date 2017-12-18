@@ -72,7 +72,7 @@
 #'                        allowanceFrame= 2, 
 #'                        newcolname = "wearing")
 #'
-#' summaryData(data=data1m, validCut=600, perMinuteCts=1, markingString = "w")
+#' summaryData(data=data1m, validCut=600, perMinuteCts=1, markingString = "w", cts = "counts")
 #'
 #' data(deliveryData)
 #' options(pa.cts = "vm")
