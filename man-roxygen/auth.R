@@ -1,6 +1,7 @@
 <% if(author == "all") { -%>
 #' @author Leena Choi \email{leena.choi@@Vanderbilt.Edu},
-#' Zhouwen Liu \email{zhouwen.liu@@Vanderbilt.Edu},
+#' Cole Beck \email{cole.beck@@vumc.org},
+#' Zhouwen Liu \email{zhouwen.liu@@vumc.org},
 #' Charles E. Matthews \email{Charles.Matthews2@@nih.gov}, and
 #' Maciej S. Buchowski \email{maciej.buchowski@@Vanderbilt.Edu}
 <% } else if(author == "choi") { -%>
