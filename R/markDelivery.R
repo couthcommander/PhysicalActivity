@@ -86,6 +86,7 @@ deliveryThreshold <- function(data, daylist, cts = getOption('pa.cts'),
 #' time per day to be considered as a valid monitor day.
 #' @param wearThreshold A numeric value specifying a pseudo-valid day cutoff
 #' similar to "validCut".
+#' @param dist A distribution used to calculate the 95\% CI.
 #'
 #' @return A dataframe with summary information about daily counts.
 #'
@@ -104,10 +105,11 @@ deliveryThreshold <- function(data, daylist, cts = getOption('pa.cts'),
 
 markDelivery <- function(data, cts = getOption('pa.cts'), markingString = "w",
         window = c('trim', 'consecutive', 'valid'),
-        method = c('95', 'mean', 'sd'),
-        validCut = getOption('pa.validCut'), wearThreshold = 300) {
+        method = c('95', 'mean', 'sd'), validCut = getOption('pa.validCut'), 
+        wearThreshold = 300, dist = c("t", "normal")) {
     window <- match.arg(window)
     method <- match.arg(method)
+    dist <- match.arg(dist)
 
     alldays <- sort(as.numeric(unique(data[, "days"])))
     wearTime <- numeric(length(alldays))
@@ -127,7 +129,7 @@ markDelivery <- function(data, cts = getOption('pa.cts'), markingString = "w",
     if(length(wind) == 0) return(NULL)
 
     # define lower-bound window
-    lb <- deliveryThreshold(ddAll, wind, cts, stat=method)
+    lb <- deliveryThreshold(ddAll, wind, cts, dist=dist, stat=method)
 
     probs <- c(95,50,5) / 100
     x.mu <- tapply(ddAll[, cts], ddAll[, "days"], 'mean')
