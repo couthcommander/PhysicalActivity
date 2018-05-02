@@ -1,8 +1,8 @@
 #' Process Physical Activity Accelerometer Data
 #'
-#' This package contains functions to classify monitor wear and nonwear time
+#' It contains functions to classify monitor wear and nonwear time
 #' intervals in accelerometer data collected to assess physical activity in
-#' free-living condition. The package also contains functions to make plot for
+#' free-living condition. It also contains functions to make plot for
 #' accelerometer data, and to obtain the summary of daily monitor wear time and
 #' the mean of monitor wear time during valid days. A monitored day is
 #' considered valid if the total minutes of classified monitor wear time per day
