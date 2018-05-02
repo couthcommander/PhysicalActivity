@@ -9,7 +9,7 @@
 #' @param cts The name of the counts column. The default is "axis1".
 #' @param markingString Option for summarizing wear (markingString = "w") or
 #' nonwear time (markingString = "nw").
-#' @param breaks A numeric vector of cut-points.
+#' @param breaks A numeric vector of cut-points. The default cut-points are based on Matthews et al. (2016).
 #' @param labels A character vector labelling intensity levels.
 #'
 #' @return A dataframe with an additional pai-level column.
