@@ -13,7 +13,7 @@
 #'
 #' @return A dataframe with an extra day marking column.
 #'
-#' @template ref2010
+#' @template ref2011
 #'
 #' @templateVar author liu
 #' @template auth
