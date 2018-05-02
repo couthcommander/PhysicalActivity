@@ -16,7 +16,7 @@
 #'
 #' @return A dataframe with an extra wearing/non-wearing marking column.
 #'
-#' @template ref2010
+#' @template ref2011
 #'
 #' @templateVar author liu
 #' @template auth
