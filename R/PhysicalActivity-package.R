@@ -22,7 +22,7 @@
 #' Maintainer: Leena Choi \email{leena.choi@@Vanderbilt.Edu}
 #'
 #' @references Choi L, Liu Z, Matthews CE, Buchowski MS. 
-#' Assessment of wear/nonwear time classification algorithms for triaxial accelerometer.
+#' Validation of accelerometer wear and nonwear time classification algorithm.
 #' Med Sci Sports Exerc. 2011 Feb;43(2):357-64.
 #'
 #' Choi L, Ward SC, Schnelle JF, Buchowski MS. 
