@@ -65,15 +65,15 @@ deliveryThreshold <- function(data, daylist, cts = getOption('pa.cts'),
 #' This function adds an indicator variable for accelerometer delivery days based
 #' on a delivery classification algorithm. The algorithm classifies each day as 
 #' delivery or non-delivery day within each participant data using summary 
-#' statistics of accelerometer counts for each day. The current version uses 
+#' statistics of accelerometer counts for each day. As the summary statistics,
 #' the 95th percentile, mean and standard deviation (sd) of accelerometer counts
-#' as the summary statistics. Then the 95\% confidence interval (CI) of the summary
-#' statistics for a set of days that is selected by the algorithm is estimated
-#' based on $t$-distribution (default) or normal distribution. If the summary
-#' statistics for a day is below the lower bound of the 95\%  CI, this day is 
-#' classified as delivery day. The algorithm uses 3 methods (namely \code{trim},
-#' \code{consecutive}, and \code{valid}) to define a set of days that are used 
-#' to estimate the 95\% CI.
+#' can be used. With the summary statistics, the algorithm defines a set of days 
+#' using 3 methods (namely \code{trim}, \code{consecutive}, and \code{valid}),
+#' which are used to estimate the 95\% confidence interval (CI) based on
+#' $t$-distribution (default) or normal distribution. The lower bound of
+#' the 95\%  CI is used to classify delivery days; that is if the summary 
+#' statistics for a day is below the lower bound of the 95\% CI, this day is 
+#' classified as delivery day.
 #'
 #' @param data Data with classified wear (nonwear) status by
 #' \code{\link{wearingMarking}}.
