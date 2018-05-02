@@ -11,7 +11,7 @@
 #'   \item{counts}{a numeric vector, counts as accelerometer measurements}
 #' }
 #'
-#' @template ref2010
+#' @template ref2011
 #'
 #' @keywords datasets
 #'
