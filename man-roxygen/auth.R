@@ -8,6 +8,9 @@
 #' @author Leena Choi \email{leena.choi@@Vanderbilt.Edu}
 <% } else if(author == "cole") { -%>
 #' @author Cole Beck \email{cole.beck@@vumc.org}
+<% } else if(author == "colechoi") { -%>
+#' @author Cole Beck \email{cole.beck@@vumc.org},
+#' Leena Choi \email{leena.choi@@Vanderbilt.Edu}
 <% } else if(author == "liu") { -%>
 #' @author Zhouwen Liu \email{zhouwen.liu@@Vanderbilt.Edu}
 <% } -%>
