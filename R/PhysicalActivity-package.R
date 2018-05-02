@@ -14,19 +14,24 @@
 #' @docType package
 #'
 #' @author Leena Choi \email{leena.choi@@Vanderbilt.Edu},
+#' Cole Beck \email{cole.beck@vumc.org},
 #' Zhouwen Liu \email{zhouwen.liu@@Vanderbilt.Edu},
 #' Charles E. Matthews \email{Charles.Matthews2@@nih.gov}, and
 #' Maciej S. Buchowski \email{maciej.buchowski@@Vanderbilt.Edu}
 #'
 #' Maintainer: Leena Choi \email{leena.choi@@Vanderbilt.Edu}
 #'
-#' @references Choi, L., Liu, Z., Matthews, C. E. and Buchowski, M. S.  (2010).
-#' Validation of Accelerometer Wear and Nonwear Time Classification Algorithm.
-#' Med Sci Sports Exerc. Jun 23 [Epub ahead of print].
+#' @references Choi L, Liu Z, Matthews CE, Buchowski MS. 
+#' Assessment of wear/nonwear time classification algorithms for triaxial accelerometer.
+#' Med Sci Sports Exerc. 2011 Feb;43(2):357-64.
 #'
-#' Choi, L., Chen, K.Y., Acra, S.A. and Buchowski, M.S.  (2010).
-#' Distributed Lag and Spline Modeling for Predicting Energy Expenditure from
-#' Accelerometry in Youth. J Appl Physiol. 108(2):314-27.
+#' Choi L, Ward SC, Schnelle JF, Buchowski MS. 
+#' Assessment of wear/nonwear time classification algorithms for triaxial accelerometer.
+#' Med Sci Sports Exerc. 2012 Oct;44(10):2009-16.
+#'
+#' Choi L, Chen KY, Acra SA, Buchowski MS. 
+#' Distributed lag and spline modeling for predicting energy expenditure from 
+#' accelerometry in youth. J Appl Physiol. 2010 Feb;108(2):314-27.
 #'
 #' @keywords accelerometer nonwear process
 #' @importFrom graphics abline plot text mtext
