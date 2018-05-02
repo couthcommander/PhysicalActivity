@@ -7,8 +7,8 @@
 #' @format A data frame with 238140 observations on the following 2 required
 #' variables.
 #' \describe{
-#'   \item{TimeStamp}{a character vector}
-#'   \item{counts}{a numeric vector}
+#'   \item{TimeStamp}{a character vector, timestamp of accelerometer measurements}
+#'   \item{counts}{a numeric vector, counts as accelerometer measurements}
 #' }
 #'
 #' @template ref2010
