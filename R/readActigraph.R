@@ -14,6 +14,9 @@
 #'
 #' @return data.frame with accelerometer data.
 #'
+#' @templateVar author cole
+#' @template auth
+#'
 #' @seealso \code{\link{wearingMarking}}, \code{\link{queryActigraph}}
 #'
 #' @examples
