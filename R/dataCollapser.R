@@ -19,7 +19,7 @@
 #'
 #' @return A collapsed data with user specified epoch.
 #'
-#' @template ref2010
+#' @template ref2011
 #'
 #' @templateVar author liu
 #' @template auth
