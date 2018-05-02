@@ -12,6 +12,9 @@
 #'
 #' @return data.frame with query results.
 #'
+#' @templateVar author cole
+#' @template auth
+#'
 #' @seealso \code{\link{readActigraph}}
 #'
 #' @examples
