@@ -16,7 +16,7 @@
 #' @return Data with the correct format (TimeStamp, axis1) to be used for
 #' \code{\link{wearingMarking}}.
 #'
-#' @template ref2010
+#' @template ref2011
 #'
 #' @templateVar author liu
 #' @template auth
