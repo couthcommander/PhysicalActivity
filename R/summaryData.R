@@ -50,7 +50,7 @@
 #' \item{intensity}{total time in hours of physical activity intensity by day.}
 #' \item{meanValidIntensity}{mean PAI-level for valid days.}
 #'
-#' @template ref2010
+#' @template ref2011
 #'
 #' @templateVar author choi
 #' @template auth
