@@ -7,6 +7,13 @@
 #' the mean of monitor wear time during valid days. A monitored day is
 #' considered valid if the total minutes of classified monitor wear time per day
 #' is greater than a user defined cutoff.
+#' The revised version 0.2-1 improved existing functions in terms of speed and
+#' robustness. In addition, several functions were added such as markDelivery
+#' that can classify days for ActiGraph delivery by mail, and markPAI that can 
+#' categorize physical activity intensity level based on user-defined cut-points 
+#' for accelerometer counts. It also supports importing ActiGraph agd files 
+#' with the readActigraph and queryActigraph functions. The package also better 
+#' supports time zones and daylight saving.
 #'
 #' Classify wear and nonwear time status for accelerometer data by
 #' epoch-by-epoch basis by \code{\link{wearingMarking}}.
