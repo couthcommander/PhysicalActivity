@@ -90,6 +90,9 @@ deliveryThreshold <- function(data, daylist, cts = getOption('pa.cts'),
 #'
 #' @return A dataframe with summary information about daily counts.
 #'
+#' @templateVar author cole, choi
+#' @template auth
+#'
 #' @examples
 #' data(deliveryData)
 #'
