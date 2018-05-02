@@ -39,7 +39,7 @@
 #' @return A dataframe with the column for wear and nonwear classification
 #' indicator by epoch-by-epoch basis.
 #'
-#' @template ref2010
+#' @template ref2011
 #'
 #' @templateVar author all
 #' @template auth
