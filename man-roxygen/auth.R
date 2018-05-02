@@ -6,6 +6,8 @@
 #' Maciej S. Buchowski \email{maciej.buchowski@@Vanderbilt.Edu}
 <% } else if(author == "choi") { -%>
 #' @author Leena Choi \email{leena.choi@@Vanderbilt.Edu}
+<% } else if(author == "cole") { -%>
+#' @author Cole Beck \email{cole.beck@@vumc.org}
 <% } else if(author == "liu") { -%>
 #' @author Zhouwen Liu \email{zhouwen.liu@@Vanderbilt.Edu}
 <% } -%>
