@@ -14,6 +14,11 @@
 #'
 #' @return A dataframe with an additional pai-level column.
 #'
+#' @references Matthews CE, Keadle SK, Troiano RP, Kahle L, Koster A, Brychta R, 
+#' Van Domelen D, Caserotti P, Chen KY, Harris TB, Berrigan D. 
+#' Accelerometer-measured dose-response for physical activity, sedentary time, and mortality in US adults.
+#' Am J Clin Nutr. 2016 Nov;104(5):1424-1432.
+#' 
 #' @examples
 #' data(dataSec)
 #'
