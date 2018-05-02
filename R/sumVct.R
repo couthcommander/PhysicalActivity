@@ -16,7 +16,7 @@
 #'
 #' @return The summary data for wearing or nonwearing time intervals.
 #'
-#' @template ref2010
+#' @template ref2011
 #'
 #' @templateVar author all
 #' @template auth
