@@ -3,7 +3,7 @@
 #' This function adds a "day" variable to the source dataset. The day is marked
 #' in numeric order, according to the timestamp variable.
 #'
-#' @param dataset The source dataset, in dataframe format, that needs to be
+#' @param dataset The source dataset, in dataframe format, which needs to be
 #' marked.
 #' @param timestamp The column name in the dataset that will be used as
 #' timestamp.
