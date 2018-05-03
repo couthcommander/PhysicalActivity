@@ -12,5 +12,5 @@
 #' @author Cole Beck \email{cole.beck@@vumc.org},
 #' Leena Choi \email{leena.choi@@Vanderbilt.Edu}
 <% } else if(author == "liu") { -%>
-#' @author Zhouwen Liu \email{zhouwen.liu@@Vanderbilt.Edu}
+#' @author Zhouwen Liu \email{zhouwen.liu@@vumc.org}
 <% } -%>
