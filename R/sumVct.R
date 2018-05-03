@@ -1,4 +1,4 @@
-#' Summarize Wearing or Nonwearing Time Interval
+#' Summarize Wear and Nonwear Time Interval
 #'
 #' This function summarizes the classified wear (nonwear) time by interval basis
 #' from the epoch-by-epoch classified wear (nonwear) status classified by
@@ -14,7 +14,7 @@
 #' @param by A sequence of days for classified wear (nonwear) time intervals.
 #' @param id Optional output for subject identification or file name.
 #'
-#' @return The summary data for wearing or nonwearing time intervals.
+#' @return The summary data for wear and nonwear time intervals.
 #'
 #' @template ref2011
 #'
