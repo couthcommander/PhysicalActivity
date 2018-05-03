@@ -25,7 +25,7 @@
 #' @param TS The column name for timestamp. The default is "TimeStamp".
 #' @param cts The name of the counts column. The default is "axis1".
 #' @param delivery data.frame. Delivery information created by
-#" \code{\link{markDelivery}}.
+#' \code{\link{markDelivery}}.
 #'
 #' @return
 #' \item{unit}{epoch for data.}
@@ -34,10 +34,10 @@
 #' accelerometer data.}
 #' \item{validCut}{a user defined cutoff for the total minutes of classified
 #' monitor wear time per day to be considered as a valid monitor day.}
-#' \item{totalValidNumDays}{the total number of valid days based on the user
-#' defined cutoff for total minutes of wearing and the classified wearing time.}
+#' \item{totalValidNumDays}{the total number of valid days based on the user defined 
+#' cutoff ("validCut") for the total minutes of wear time and the classified wear time.}
 #' \item{totalValidNumWeekWeekend}{the total number of valid weekdays and valid
-#' weekend days based on a user defined cutoff for the total minutes of
+#' weekend days based on the user defined cutoff ("validCut") for the total minutes of
 #' classified monitor wear time per day.}
 #' \item{wearTimeByDay}{the classified total wear (nonwear) time by day.}
 #' \item{deliveryDays}{marked delivery days.}
@@ -47,9 +47,9 @@
 #' during weekdays and weekends.}
 #' \item{meanWeartimeOverallValidDays}{the mean wear (nonwear) time for overall
 #' valid days.}
-#' \item{dayInfo}{information about each day of wear.}
-#' \item{intensity}{total time in hours of physical activity intensity by day.}
-#' \item{meanValidIntensity}{mean PAI-level for valid days.}
+#' \item{dayInfo}{information about wear time and mean counts for each day.}
+#' \item{intensity}{the total time in hours of physical activity intensity by day.}
+#' \item{meanValidIntensity}{the mean physical activity intensity (PAI) level for valid days.}
 #'
 #' @template ref2011
 #'
