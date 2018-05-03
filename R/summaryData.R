@@ -1,6 +1,6 @@
 #' Summarize Classified Wear Time by Daily Basis
 #'
-#' This function summarizes accelerometer data and classified wear or nonwear
+#' This function summarizes accelerometer data and the classified wear or nonwear
 #' time by daily basis.
 #'
 #' This function summarizes the total number of days, weekdays and weekends in
@@ -9,8 +9,9 @@
 #' for the total minutes of classified monitor wear time per day. This function
 #' also summarizes the classified wear (nonwear) time by day and by valid day,
 #' and the mean wear (nonwear) time for valid days during weekday and weekends,
-#' and for overall valid days.
-#'
+#' and for overall valid days. If mail delivery days are classified by 
+#' \code{\link{markDelivery}}, it also summarizes the classified delivery
+#' (non-delivery) days with argument "delivery".
 #' @param data Data with classified wear (nonwear) status by
 #' \code{\link{wearingMarking}}.
 #' @param validCut A cutoff for the total minutes of classified monitor wear
@@ -52,7 +53,7 @@
 #'
 #' @template ref2011
 #'
-#' @templateVar author choi
+#' @templateVar author colechoi
 #' @template auth
 #'
 #' @seealso \code{\link{wearingMarking}}, \code{\link{sumVct}},
