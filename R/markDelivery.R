@@ -60,7 +60,7 @@ deliveryThreshold <- function(data, daylist, cts = getOption('pa.cts'),
     lb.window
 }
 
-#' Mark Delivery Days
+#' Classify Mail Delivery and Non-Delivery Days for Accelerometer Data  
 #'
 #' This function adds an indicator variable for accelerometer delivery days based
 #' on a delivery classification algorithm. The algorithm classifies each day as 
