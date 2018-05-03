@@ -89,7 +89,7 @@ deliveryThreshold <- function(data, daylist, cts = getOption('pa.cts'),
 #' the 95\% CI.
 #' @param dist Option for distribution used to calculate the 95\% CI.
 #'
-#' @return A dataframe with summary information about daily counts.
+#' @return A data frame with summary information about daily counts.
 #'
 #' @templateVar author colechoi
 #' @template auth
