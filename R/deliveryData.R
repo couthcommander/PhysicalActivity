@@ -1,4 +1,4 @@
-#' Delivery Classification Data Example
+#' Data Example for Mail Delivery Day Classification 
 #'
 #' Approximately 15 days of 3-axis accelerometer data collected with 1-minute epoch.
 #'
