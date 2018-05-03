@@ -14,6 +14,9 @@
 #'
 #' @keywords datasets
 #'
+#' @templateVar author colechoi
+#' @template auth
+#'
 #' @examples
 #' data(deliveryData)
 "deliveryData"
