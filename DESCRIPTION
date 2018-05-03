@@ -4,8 +4,8 @@ Date: 2018-05-03
 Title: Process Accelerometer Data for Physical Activity Measurement
 Authors@R: c(person("Leena", "Choi", role = c("aut", "cre"),
     email = "leena.choi@Vanderbilt.Edu"),
-    person("Zhouwen", "Liu", role = "aut"),
     person("Cole", "Beck", role = "aut"),
+    person("Zhouwen", "Liu", role = "aut"),
     person("Charles E.", "Matthews", role = "aut"),
     person("Maciej S.", "Buchowski", role = "aut"))
 Description: The function "wearingMarking" provides classification of monitor 
