@@ -1,7 +1,7 @@
 #' Mark Physical Activity Intensity (PAI) Level
 #'
-#' This function adds a physical activity intensity level variable to the
-#' source dataset.  "pai" is an ordered factor variable.  It will be NA for
+#' This function adds a physical activity intensity level variable "pai" to the
+#' source dataset. The "pai" is an ordered factor variable. It will be NA for
 #' nonwear times.
 #'
 #' @param data Data with classified wear (nonwear) status by
@@ -9,7 +9,8 @@
 #' @param cts The name of the counts column. The default is "axis1".
 #' @param markingString Option for summarizing wear (markingString = "w") or
 #' nonwear time (markingString = "nw").
-#' @param breaks A numeric vector of cut-points. The default cut-points are based on Matthews et al. (2016).
+#' @param breaks A numeric vector of cut-points. The default cut-points are based on
+#' Matthews et al. (2016).
 #' @param labels A character vector labelling intensity levels.
 #'
 #' @return A dataframe with an additional pai-level column.
@@ -18,7 +19,10 @@
 #' Van Domelen D, Caserotti P, Chen KY, Harris TB, Berrigan D. 
 #' Accelerometer-measured dose-response for physical activity, sedentary time, and mortality in US adults.
 #' Am J Clin Nutr. 2016 Nov;104(5):1424-1432.
-#' 
+#'
+#' @templateVar author colechoi
+#' @template auth
+#'
 #' @examples
 #' data(dataSec)
 #'
