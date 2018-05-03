@@ -52,8 +52,10 @@
 #' \item{meanWeartimeOverallValidDays}{the mean wear (nonwear) time for overall
 #' valid days.}
 #' \item{dayInfo}{information about wear time and mean counts for each day.}
-#' \item{intensity}{conditional output, the total time in hours of physical activity intensity by day.}
-#' \item{meanValidIntensity}{conditional output, the mean physical activity intensity (PAI) level for valid days.}
+#' \item{intensity}{optional output depending on \dQuote{pai} column in the data; 
+#' the total time in hours of physical activity intensity by day.}
+#' \item{meanValidIntensity}{optional output depending on \dQuote{pai} column in the data; 
+#' the mean physical activity intensity (PAI) level for valid days.}
 #'
 #' @template ref2011
 #'
