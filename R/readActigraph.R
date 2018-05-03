@@ -5,14 +5,14 @@
 #' Observations can be classified with wear and nonwear time using
 #' \code{\link{wearingMarking}}.
 #'
-#' AGD files are SQLite databases. This function requires the \code{RSQLite}
+#' AGD files are SQLite databases. This function requires the \pkg{RSQLite}
 #' package.
 #'
 #' @param datfile An AGD file.
 #' @param convertTime Convert the timestamp from a character string into
 #' POSIXct.
 #'
-#' @return data.frame with accelerometer data.
+#' @return A data frame with accelerometer data.
 #'
 #' @templateVar author cole
 #' @template auth
