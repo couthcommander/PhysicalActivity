@@ -34,7 +34,7 @@
 #' @param \dots Parameter settings that will be used in
 #' \code{\link{dataCollapser}} function.
 #'
-#' @return A dataframe with the column for wear and nonwear classification
+#' @return A data frame with the column for wear and nonwear classification
 #' indicator by epoch-by-epoch basis.
 #'
 #' @template ref2011
