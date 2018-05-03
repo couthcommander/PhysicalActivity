@@ -13,7 +13,7 @@
 #' Matthews et al. (2016).
 #' @param labels A character vector labelling intensity levels.
 #'
-#' @return A dataframe with an additional pai-level column.
+#' @return A dataframe with an additional PAI-level column.
 #'
 #' @references Matthews CE, Keadle SK, Troiano RP, Kahle L, Koster A, Brychta R, 
 #' Van Domelen D, Caserotti P, Chen KY, Harris TB, Berrigan D. 
