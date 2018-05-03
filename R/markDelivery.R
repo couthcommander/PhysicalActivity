@@ -77,15 +77,16 @@ deliveryThreshold <- function(data, daylist, cts = getOption('pa.cts'),
 
 #' @param data Data with classified wear (nonwear) status by
 #' \code{\link{wearingMarking}}.
-#' @param cts The name of the counts column. The default is "axis1".
-#' @param markingString Option for summarizing wear (markingString = "w") or
-#' nonwear time (markingString = "nw").
-#' @param window A character. It should be one of 'trim', 'consecutive', or 'valid'.
-#' @param method A character. It should be one of '95', 'mean' or 'sd'.
+#' @param cts The name of the counts column. The default is \dQuote{axis1}.
+#' @param markingString Option for summarizing wear (markingString = \dQuote{w}) or
+#' nonwear time (markingString = \dQuote{nw}).
+#' @param window A character. It should be one of \sQuote{trim}, \sQuote{consecutive}, 
+#' or \sQuote{valid}.
+#' @param method A character. It should be one of \sQuote{95}, \sQuote{mean} or \sQuote{sd}.
 #' @param validCut A cutoff for the total minutes of classified monitor wear
 #' time per day to be considered as a valid monitor day.
 #' @param wearThreshold A numeric value specifying a pseudo-valid day cutoff
-#' similar to "validCut", which is used to define a set of days to estimate
+#' similar to \dQuote{validCut}, which is used to define a set of days to estimate
 #' the 95\% CI.
 #' @param dist Option for distribution used to calculate the 95\% CI.
 #'
