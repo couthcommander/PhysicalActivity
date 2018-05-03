@@ -10,7 +10,7 @@
 #' @param markingString Option for summarizing wear (markingString = \dQuote{w}) or
 #' nonwear time (markingString = \dQuote{nw}).
 #' @param breaks A numeric vector of cut-points. The default cut-points are based on
-#' Matthews et al. (2016).
+#' Matthews \emph{et al.} (2016).
 #' @param labels A character vector labelling intensity levels.
 #'
 #' @return A data frame with an additional PAI-level column.
