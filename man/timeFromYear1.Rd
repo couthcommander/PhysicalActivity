@@ -11,4 +11,3 @@ There are 62,135,596,800 seconds from 0001-01-01 until 1970-01-01.
 The last 1e7 digits of x are unnecessary microseconds.
 }
 \keyword{internal}
-

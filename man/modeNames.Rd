@@ -14,4 +14,3 @@ https://actigraph.desk.com/customer/en/portal/articles/
 2515800-what-do-the-different-mode-numbers-mean-in-a-csv-or-dat-file-
 }
 \keyword{internal}
-

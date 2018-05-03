@@ -4,24 +4,22 @@
 \name{deliveryData}
 \alias{deliveryData}
 \title{Delivery Classification Data Example}
-\format{A data frame with 20987 observations on the following 6 required
-variables.
+\format{A data frame with 20987 observations on the following variables.
 \describe{
-  \item{TimeStamp}{a character vector}
-  \item{axis1}{a numeric vector}
-  \item{axis2}{a numeric vector}
-  \item{axis3}{a numeric vector}
-  \item{steps}{a numeric vector}
-  \item{vm}{a numeric vector, vector magnitude}
+  \item{TimeStamp}{a character vector, timestamp of accelerometer measurements}
+  \item{axis1}{a numeric vector, counts from axis1 of 3-axis accelerometer}
+  \item{axis2}{a numeric vector, counts from axis2 of 3-axis accelerometer}
+  \item{axis3}{a numeric vector, counts from axis3 of 3-axis accelerometer}
+  \item{steps}{a numeric vector, the number of steps}
+  \item{vm}{a numeric vector, the vector magnitude calculated from counts of axis1, axis2 and axis3}
 }}
 \usage{
 deliveryData
 }
 \description{
-Approximately 15 days of accelerometer data collected with 1-minute epoch.
+Approximately 15 days of 3-axis accelerometer data collected with 1-minute epoch.
 }
 \examples{
 data(deliveryData)
 }
 \keyword{datasets}
-

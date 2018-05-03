@@ -25,4 +25,3 @@ This is an internal function, not for users.
 Zhouwen Liu \email{zhouwen.liu@Vanderbilt.Edu}
 }
 \keyword{internal}
-

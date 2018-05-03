@@ -38,4 +38,6 @@ DBI::dbDisconnect(con)
 \seealso{
 \code{\link{readActigraph}}
 }
-
+\author{
+Cole Beck \email{cole.beck@vumc.org}
+}

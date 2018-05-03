@@ -25,12 +25,11 @@ A dataframe with an extra day marking column.
 This function adds a "day" variable to the source dataset. The day is marked
 in numeric order, according to the timestamp variable.
 }
+\references{
+Choi L, Liu Z, Matthews CE, Buchowski MS. 
+Validation of accelerometer wear and nonwear time classification algorithm.
+Med Sci Sports Exerc. 2011 Feb;43(2):357-64.
+}
 \author{
 Zhouwen Liu \email{zhouwen.liu@Vanderbilt.Edu}
 }
-\references{
-Choi, L., Liu, Z., Matthews, C. E. and Buchowski, M. S.  (2010).
-Validation of Accelerometer Wear and Nonwear Time Classification Algorithm.
-Med Sci Sports Exerc. Jun 23 [Epub ahead of print].
-}
-

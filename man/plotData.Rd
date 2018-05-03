@@ -67,10 +67,9 @@ plotData(data=data1m, day=2)
 sumdat <- summaryData(data=data1m)
 plotData(data=data1m, summary=sumdat)
 }
-\author{
-Leena Choi \email{leena.choi@Vanderbilt.Edu}
-}
 \seealso{
 \code{\link{sumVct}}, \code{\link{wearingMarking}}
 }
-
+\author{
+Leena Choi \email{leena.choi@Vanderbilt.Edu}
+}

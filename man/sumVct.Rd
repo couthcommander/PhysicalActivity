@@ -49,18 +49,18 @@ data1m = wearingMarking(dataset = mydata1m,
 sumVct(data1m, id="sdata1m")
 sumVct(data1m, id="sdata1m", markingString = "nw")
 }
-\author{
-Leena Choi \email{leena.choi@Vanderbilt.Edu},
-Zhouwen Liu \email{zhouwen.liu@Vanderbilt.Edu},
-Charles E. Matthews \email{Charles.Matthews2@nih.gov}, and
-Maciej S. Buchowski \email{maciej.buchowski@Vanderbilt.Edu}
-}
 \references{
-Choi, L., Liu, Z., Matthews, C. E. and Buchowski, M. S.  (2010).
-Validation of Accelerometer Wear and Nonwear Time Classification Algorithm.
-Med Sci Sports Exerc. Jun 23 [Epub ahead of print].
+Choi L, Liu Z, Matthews CE, Buchowski MS. 
+Validation of accelerometer wear and nonwear time classification algorithm.
+Med Sci Sports Exerc. 2011 Feb;43(2):357-64.
 }
 \seealso{
 \code{\link{wearingMarking}}, \code{\link{summaryData}}
 }
-
+\author{
+Leena Choi \email{leena.choi@Vanderbilt.Edu},
+Cole Beck \email{cole.beck@vumc.org},
+Zhouwen Liu \email{zhouwen.liu@vumc.org},
+Charles E. Matthews \email{Charles.Matthews2@nih.gov}, and
+Maciej S. Buchowski \email{maciej.buchowski@Vanderbilt.Edu}
+}

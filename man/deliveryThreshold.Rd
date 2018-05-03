@@ -11,4 +11,3 @@ deliveryThreshold(data, daylist, cts = getOption("pa.cts"), dist = c("t",
 Delivery Count Threshold
 }
 \keyword{internal}
-

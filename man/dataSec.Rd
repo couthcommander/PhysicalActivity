@@ -7,8 +7,8 @@
 \format{A data frame with 238140 observations on the following 2 required
 variables.
 \describe{
-  \item{TimeStamp}{a character vector}
-  \item{counts}{a numeric vector}
+  \item{TimeStamp}{a character vector, timestamp of accelerometer measurements}
+  \item{counts}{a numeric vector, counts as accelerometer measurements}
 }}
 \usage{
 dataSec
@@ -22,9 +22,8 @@ wear and nonwear time.
 data(dataSec)
 }
 \references{
-Choi, L., Liu, Z., Matthews, C. E. and Buchowski, M. S.  (2010).
-Validation of Accelerometer Wear and Nonwear Time Classification Algorithm.
-Med Sci Sports Exerc. Jun 23 [Epub ahead of print].
+Choi L, Liu Z, Matthews CE, Buchowski MS. 
+Validation of accelerometer wear and nonwear time classification algorithm.
+Med Sci Sports Exerc. 2011 Feb;43(2):357-64.
 }
 \keyword{datasets}
-

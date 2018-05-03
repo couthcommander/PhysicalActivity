@@ -42,12 +42,11 @@ mydata10s = dataCollapser(dataSec, TS = "TimeStamp", col = "counts", by = 10)
 ## collapse 1-sec epoch data to 1-min epoch data
 mydata1m = dataCollapser(dataSec, TS = "TimeStamp", col = "counts", by = 60)
 }
+\references{
+Choi L, Liu Z, Matthews CE, Buchowski MS. 
+Validation of accelerometer wear and nonwear time classification algorithm.
+Med Sci Sports Exerc. 2011 Feb;43(2):357-64.
+}
 \author{
 Zhouwen Liu \email{zhouwen.liu@Vanderbilt.Edu}
 }
-\references{
-Choi, L., Liu, Z., Matthews, C. E. and Buchowski, M. S.  (2010).
-Validation of Accelerometer Wear and Nonwear Time Classification Algorithm.
-Med Sci Sports Exerc. Jun 23 [Epub ahead of print].
-}
-

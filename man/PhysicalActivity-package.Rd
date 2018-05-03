@@ -6,13 +6,20 @@
 \alias{PhysicalActivity-package}
 \title{Process Physical Activity Accelerometer Data}
 \description{
-This package contains functions to classify monitor wear and nonwear time
+It contains functions to classify monitor wear and nonwear time
 intervals in accelerometer data collected to assess physical activity in
-free-living condition. The package also contains functions to make plot for
+free-living condition. It also contains functions to make plot for
 accelerometer data, and to obtain the summary of daily monitor wear time and
 the mean of monitor wear time during valid days. A monitored day is
 considered valid if the total minutes of classified monitor wear time per day
 is greater than a user defined cutoff.
+The revised version 0.2-1 improved existing functions in terms of speed and
+robustness. In addition, several functions were added such as markDelivery
+that can classify days for ActiGraph delivery by mail, and markPAI that can 
+categorize physical activity intensity level based on user-defined cut-points 
+for accelerometer counts. It also supports importing ActiGraph agd files 
+with the readActigraph and queryActigraph functions. The package also better 
+supports time zones and daylight saving.
 }
 \details{
 Classify wear and nonwear time status for accelerometer data by
@@ -31,24 +38,28 @@ plotData(data=data1m)
 
 summaryData(data=data1m, validCut=600, perMinuteCts=1, markingString = "w")
 }
+\references{
+Choi L, Liu Z, Matthews CE, Buchowski MS. 
+Validation of accelerometer wear and nonwear time classification algorithm.
+Med Sci Sports Exerc. 2011 Feb;43(2):357-64.
+
+Choi L, Ward SC, Schnelle JF, Buchowski MS. 
+Assessment of wear/nonwear time classification algorithms for triaxial accelerometer.
+Med Sci Sports Exerc. 2012 Oct;44(10):2009-16.
+
+Choi L, Chen KY, Acra SA, Buchowski MS. 
+Distributed lag and spline modeling for predicting energy expenditure from 
+accelerometry in youth. J Appl Physiol. 2010 Feb;108(2):314-27.
+}
 \author{
 Leena Choi \email{leena.choi@Vanderbilt.Edu},
-Zhouwen Liu \email{zhouwen.liu@Vanderbilt.Edu},
+Cole Beck \email{cole.beck@vumc.org},
+Zhouwen Liu \email{zhouwen.liu@vumc.org},
 Charles E. Matthews \email{Charles.Matthews2@nih.gov}, and
 Maciej S. Buchowski \email{maciej.buchowski@Vanderbilt.Edu}
 
 Maintainer: Leena Choi \email{leena.choi@Vanderbilt.Edu}
 }
-\references{
-Choi, L., Liu, Z., Matthews, C. E. and Buchowski, M. S.  (2010).
-Validation of Accelerometer Wear and Nonwear Time Classification Algorithm.
-Med Sci Sports Exerc. Jun 23 [Epub ahead of print].
-
-Choi, L., Chen, K.Y., Acra, S.A. and Buchowski, M.S.  (2010).
-Distributed Lag and Spline Modeling for Predicting Energy Expenditure from
-Accelerometry in Youth. J Appl Physiol. 108(2):314-27.
-}
 \keyword{accelerometer}
 \keyword{nonwear}
 \keyword{process}
-

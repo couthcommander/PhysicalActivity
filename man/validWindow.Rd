@@ -10,4 +10,3 @@ validWindow(wearTime, cnt, trim = TRUE)
 Define Days Within Window
 }
 \keyword{internal}
-

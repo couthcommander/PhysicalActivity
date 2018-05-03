@@ -25,4 +25,4 @@ Description: It contains functions to classify monitor wear and nonwear
 License: GPL (>=3)
 Depends: R (>= 2.10)
 Suggests: RSQLite, DBI
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.1

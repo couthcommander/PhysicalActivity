@@ -42,4 +42,6 @@ dat1s <- wearingMarking(dataset = dat,
 \seealso{
 \code{\link{wearingMarking}}, \code{\link{queryActigraph}}
 }
-
+\author{
+Cole Beck \email{cole.beck@vumc.org}
+}

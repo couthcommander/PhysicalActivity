@@ -10,4 +10,3 @@ agdSettings(datfile)
 Query ActiGraph (agd) SQLite file for settings.
 }
 \keyword{internal}
-

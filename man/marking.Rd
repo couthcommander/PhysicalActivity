@@ -31,13 +31,12 @@ A dataframe with an extra wearing/non-wearing marking column.
 \description{
 This function marks the dataset with wearing/non-wearing tags.
 }
+\references{
+Choi L, Liu Z, Matthews CE, Buchowski MS. 
+Validation of accelerometer wear and nonwear time classification algorithm.
+Med Sci Sports Exerc. 2011 Feb;43(2):357-64.
+}
 \author{
 Zhouwen Liu \email{zhouwen.liu@Vanderbilt.Edu}
 }
-\references{
-Choi, L., Liu, Z., Matthews, C. E. and Buchowski, M. S.  (2010).
-Validation of Accelerometer Wear and Nonwear Time Classification Algorithm.
-Med Sci Sports Exerc. Jun 23 [Epub ahead of print].
-}
 \keyword{internal}
-
