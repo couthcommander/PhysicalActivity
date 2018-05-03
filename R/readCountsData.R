@@ -13,7 +13,7 @@
 #' @param mode The mode of the ActiLife dat file.  Defaults to 0, and should be
 #' listed in the file header.
 #'
-#' @return Data with the correct format (TimeStamp, axis1) to be used for
+#' @return a data frame with the correct format (TimeStamp, axis1) to be used for
 #' \code{\link{wearingMarking}}.
 #'
 #' @template ref2011
