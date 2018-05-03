@@ -54,7 +54,7 @@ valid days.}
 \item{meanValidIntensity}{mean PAI-level for valid days.}
 }
 \description{
-This function summarizes accelerometer data and classified wear or nonwear
+This function summarizes accelerometer data and the classified wear or nonwear
 time by daily basis.
 }
 \details{
@@ -64,7 +64,9 @@ days, valid weekdays and valid weekend days based on a user defined cutoff
 for the total minutes of classified monitor wear time per day. This function
 also summarizes the classified wear (nonwear) time by day and by valid day,
 and the mean wear (nonwear) time for valid days during weekday and weekends,
-and for overall valid days.
+and for overall valid days. If mail delivery days are classified by 
+\code{\link{markDelivery}}, it also summarizes the classified delivery
+(non-delivery) days with argument "delivery".
 }
 \examples{
 data(dataSec)
@@ -99,5 +101,6 @@ Med Sci Sports Exerc. 2011 Feb;43(2):357-64.
 \code{\link{markPAI}}, \code{\link{markDelivery}}
 }
 \author{
+Cole Beck \email{cole.beck@vumc.org},
 Leena Choi \email{leena.choi@Vanderbilt.Edu}
 }

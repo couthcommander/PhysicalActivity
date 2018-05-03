@@ -17,7 +17,8 @@ markPAI(data, cts = getOption("pa.cts"), markingString = "w",
 \item{markingString}{Option for summarizing wear (markingString = "w") or
 nonwear time (markingString = "nw").}
 
-\item{breaks}{A numeric vector of cut-points. The default cut-points are based on Matthews et al. (2016).}
+\item{breaks}{A numeric vector of cut-points. The default cut-points are based on
+Matthews et al. (2016).}
 
 \item{labels}{A character vector labelling intensity levels.}
 }
@@ -25,8 +26,8 @@ nonwear time (markingString = "nw").}
 A dataframe with an additional pai-level column.
 }
 \description{
-This function adds a physical activity intensity level variable to the
-source dataset.  "pai" is an ordered factor variable.  It will be NA for
+This function adds a physical activity intensity level variable "pai" to the
+source dataset. The "pai" is an ordered factor variable. It will be NA for
 nonwear times.
 }
 \examples{
@@ -45,4 +46,8 @@ Matthews CE, Keadle SK, Troiano RP, Kahle L, Koster A, Brychta R,
 Van Domelen D, Caserotti P, Chen KY, Harris TB, Berrigan D. 
 Accelerometer-measured dose-response for physical activity, sedentary time, and mortality in US adults.
 Am J Clin Nutr. 2016 Nov;104(5):1424-1432.
+}
+\author{
+Cole Beck \email{cole.beck@vumc.org},
+Leena Choi \email{leena.choi@Vanderbilt.Edu}
 }

@@ -18,17 +18,18 @@ markDelivery(data, cts = getOption("pa.cts"), markingString = "w",
 \item{markingString}{Option for summarizing wear (markingString = "w") or
 nonwear time (markingString = "nw").}
 
-\item{window}{character.  Should be one of 'trim', 'consecutive', or 'valid'.}
+\item{window}{A character. It should be one of 'trim', 'consecutive', or 'valid'.}
 
-\item{method}{character.  Should be one of '95', 'mean' or 'sd'.}
+\item{method}{A character. It should be one of '95', 'mean' or 'sd'.}
 
 \item{validCut}{A cutoff for the total minutes of classified monitor wear
 time per day to be considered as a valid monitor day.}
 
 \item{wearThreshold}{A numeric value specifying a pseudo-valid day cutoff
-similar to "validCut".}
+similar to "validCut", which is used to define a set of days to estimate
+the 95\% CI.}
 
-\item{dist}{A distribution used to calculate the 95\% CI.}
+\item{dist}{Option for distribution used to calculate the 95\% CI.}
 }
 \value{
 A dataframe with summary information about daily counts.
@@ -39,13 +40,13 @@ on a delivery classification algorithm. The algorithm classifies each day as
 delivery or non-delivery day within each participant data using summary 
 statistics of accelerometer counts for each day. As the summary statistics,
 the 95th percentile, mean and standard deviation (sd) of accelerometer counts
-can be used. With the summary statistics, the algorithm defines a set of days 
-using 3 methods (namely \code{trim}, \code{consecutive}, and \code{valid}),
-which are used to estimate the 95\% confidence interval (CI) based on
-$t$-distribution (default) or normal distribution. The lower bound of
-the 95\%  CI is used to classify delivery days; that is if the summary 
-statistics for a day is below the lower bound of the 95\% CI, this day is 
-classified as delivery day.
+can be used. Using the summary statistics for each day, the algorithm defines
+a set of days that are used to estimate the 95\% confidence interval (CI)
+based on t-distribution (default) or normal distribution. The lower bound of
+the 95\%  CI is used to classify delivery days; if the summary statistics 
+for a day is below the lower bound of the 95\% CI, this day is classified 
+as delivery day. Three methods for defining a set of days are available: 
+\code{trim} (default), \code{consecutive}, and \code{valid}.
 }
 \examples{
 data(deliveryData)
@@ -58,4 +59,8 @@ plotData(data=wm) # days 1, 2, 10 - 15 are delivery or invalid days based on the
 markDelivery(wm, window='valid', method='mean')
 markDelivery(wm, method='mean')
 markDelivery(wm, method='sd')
+}
+\author{
+Cole Beck \email{cole.beck@vumc.org},
+Leena Choi \email{leena.choi@Vanderbilt.Edu}
 }

@@ -7,7 +7,7 @@
 markingTime(dataset, timestamp, startTime = "00:00:00", tz = "UTC")
 }
 \arguments{
-\item{dataset}{The source dataset, in dataframe format, that needs to be
+\item{dataset}{The source dataset, in dataframe format, which needs to be
 marked.}
 
 \item{timestamp}{The column name in the dataset that will be used as

@@ -7,22 +7,22 @@
 readActigraph(datfile, convertTime = TRUE)
 }
 \arguments{
-\item{datfile}{An agd file.}
+\item{datfile}{An AGD file.}
 
-\item{convertTime}{Convert the time stamp from a character string into
+\item{convertTime}{Convert the timestamp from a character string into
 POSIXct.}
 }
 \value{
 data.frame with accelerometer data.
 }
 \description{
-This function reads an ActiGraph agd file into R as a data.frame.
-Accelerometer data has three axes which are used to create vector magnitude.
+This function reads an ActiGraph AGD file into R as a data.frame.
+Accelerometer data has three axes that are used to create vector magnitude.
 Observations can be classified with wear and nonwear time using
 \code{\link{wearingMarking}}.
 }
 \details{
-agd files are SQLite databases.  This function requires the \code{RSQLite}
+AGD files are SQLite databases. This function requires the \code{RSQLite}
 package.
 }
 \examples{

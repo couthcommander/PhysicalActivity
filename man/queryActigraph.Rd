@@ -7,7 +7,7 @@
 queryActigraph(datfile, qry)
 }
 \arguments{
-\item{datfile}{An agd file.}
+\item{datfile}{An AGD file.}
 
 \item{qry}{An SQL SELECT statement.}
 }
@@ -15,13 +15,13 @@ queryActigraph(datfile, qry)
 data.frame with query results.
 }
 \description{
-This function executes a SELECT query on an ActiGraph agd file.
+This function executes a SELECT query on an ActiGraph AGD file.
 }
 \details{
-agd files are actually SQLite databases.  This function requires the
+AGD files are actually SQLite databases.  This function requires the
 \code{RSQLite} package.  The user is encouraged to directly interface with
 the database by creating a connection with the \code{DBI} package.  This has
-been tested with agd files produced with ActiLife v6.11.
+been tested with AGD files produced with ActiLife v6.11.
 }
 \examples{
 \dontrun{

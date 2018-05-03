@@ -4,26 +4,28 @@
 \name{PhysicalActivity-package}
 \alias{PhysicalActivity}
 \alias{PhysicalActivity-package}
-\title{Process Physical Activity Accelerometer Data}
+\title{Process Accelerometer Data for Physical Activity Measurement}
 \description{
-It contains functions to classify monitor wear and nonwear time
-intervals in accelerometer data collected to assess physical activity in
-free-living condition. It also contains functions to make plot for
-accelerometer data, and to obtain the summary of daily monitor wear time and
-the mean of monitor wear time during valid days. A monitored day is
-considered valid if the total minutes of classified monitor wear time per day
-is greater than a user defined cutoff.
-The revised version 0.2-1 improved existing functions in terms of speed and
-robustness. In addition, several functions were added such as markDelivery
-that can classify days for ActiGraph delivery by mail, and markPAI that can 
-categorize physical activity intensity level based on user-defined cut-points 
-for accelerometer counts. It also supports importing ActiGraph agd files 
-with the readActigraph and queryActigraph functions. The package also better 
-supports time zones and daylight saving.
+It provides a function \code{\link{wearingMarking}} for classification of monitor
+wear and nonwear time intervals in accelerometer data collected to assess
+physical activity. The package also contains functions for making plot for
+accelerometer data and obtaining the summary of various information including
+daily monitor wear time and the mean monitor wear time during valid days.
 }
 \details{
+The revised package version 0.2-1 improved the functions in the previous version
+regarding speed and robustness. In addition, several functions were added: 
+\code{\link{markDelivery}} can classify days for ActiGraph delivery by mail; 
+\code{\link{markPAI}} can categorize physical activity intensity level based on
+user-defined cut-points of accelerometer counts. It also supports importing ActiGraph
+AGD files with \code{\link{readActigraph}} and \code{\link{queryActigraph}} functions.
+The package also better supports time zones and daylight saving.
+
 Classify wear and nonwear time status for accelerometer data by
 epoch-by-epoch basis by \code{\link{wearingMarking}}.
+
+Classify mail delivery and non-delivery day status for accelerometer data 
+by \code{\link{markDelivery}}.
 }
 \examples{
 data(dataSec)
@@ -61,5 +63,13 @@ Maciej S. Buchowski \email{maciej.buchowski@Vanderbilt.Edu}
 Maintainer: Leena Choi \email{leena.choi@Vanderbilt.Edu}
 }
 \keyword{accelerometer}
+\keyword{and}
+\keyword{classification}
+\keyword{classification,}
+\keyword{data}
+\keyword{day}
+\keyword{delivery}
+\keyword{mail}
 \keyword{nonwear}
-\keyword{process}
+\keyword{process,}
+\keyword{wear}
