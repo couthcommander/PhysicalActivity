@@ -39,7 +39,7 @@
 #'                        allowanceFrame= 2, 
 #'                        newcolname = "wearing")
 #'
-#' ## change \sQuote{cts} default from \dQuote{axis1} to \dQuote{counts}
+#' ## change "cts" default from "axis1" to "counts"
 #' options(pa.cts = "counts")
 #' ## plot the whole data
 #' plotData(data=data1m)
