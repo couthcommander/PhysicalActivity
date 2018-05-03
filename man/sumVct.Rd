@@ -2,7 +2,7 @@
 % Please edit documentation in R/sumVct.R
 \name{sumVct}
 \alias{sumVct}
-\title{Summarize Wearing or Nonwearing Time Interval}
+\title{Summarize Wear and Nonwear Time Interval}
 \usage{
 sumVct(datavct, wearing = "wearing", TS = getOption("pa.timeStamp"),
   markingString = "w", by = "days", id = NULL)
@@ -24,7 +24,7 @@ nonwear time interval (markingString="nw").}
 \item{id}{Optional output for subject identification or file name.}
 }
 \value{
-The summary data for wearing or nonwearing time intervals.
+The summary data for wear and nonwear time intervals.
 }
 \description{
 This function summarizes the classified wear (nonwear) time by interval basis

@@ -14,28 +14,28 @@ wearingMarking(dataset, frame = 90, perMinuteCts = 60,
 marked.}
 
 \item{frame}{The size of time interval to be considered; Window 1 described
-in Choi et al. (2011). The default is 90.}
+in Choi \emph{et al.} (2011). The default is 90.}
 
 \item{perMinuteCts}{The number of data rows per minute. The default is 1-sec
 epoch (perMinuteCts = 60). For examples: for data with 10-sec epoch, set
 perMinuteCts = 6; for data with 1-min epoch, set perMinuteCts = 1.}
 
-\item{TS}{The column name for timestamp. The default is "TimeStamp".}
+\item{TS}{The column name for timestamp. The default is \dQuote{TimeStamp}.}
 
-\item{cts}{The column name for counts. The default is "axis1".}
+\item{cts}{The column name for counts. The default is \dQuote{axis1}.}
 
 \item{streamFrame}{The size of time interval that the program will look back
-or forward if activity is detected; Window 2 described in Choi et al. (2011).
-The default is the half of the frame.}
+or forward if activity is detected; Window 2 described in Choi \emph{et al.}
+(2011). The default is the half of the frame.}
 
 \item{allowanceFrame}{The size of time interval that zero counts are allowed;
-the artifactual movement interval described in Choi et al. (2011).
+the artifactual movement interval described in Choi \emph{et al.} (2011).
 The default is 2.}
 
 \item{newcolname}{The column name for classified wear and nonwear status. The
-default is "wearing".  After the data is processed, a new field will be added
-to the original dataframe.  This new field is an indicator for the
-wearing ("w") or nowwearing ("nw").}
+default is \dQuote{wearing}.  After the data is processed, a new field will 
+be added to the original dataframe. This new field is an indicator for the
+wearing (\dQuote{w}) or nowwearing (\dQuote{nw}).}
 
 \item{getMinuteMarking}{Return minute data with wear and nonwear
 classification. If the source is not a minute dataset, the function will
@@ -50,7 +50,7 @@ collapse it into minute data. The default is FALSE.}
 \code{\link{dataCollapser}} function.}
 }
 \value{
-A dataframe with the column for wear and nonwear classification
+A data frame with the column for wear and nonwear classification
 indicator by epoch-by-epoch basis.
 }
 \description{
@@ -59,7 +59,7 @@ data by epoch-by-epoch basis.
 }
 \details{
 A detailed description of the algorithm implemented in this function is
-described in Choi et al. (2011).
+described in Choi \emph{et al.} (2011).
 }
 \note{
 Warning: It will be very slow if accelerometer data with 1-sec epoch

@@ -12,22 +12,22 @@ markPAI(data, cts = getOption("pa.cts"), markingString = "w",
 \item{data}{Data with classified wear (nonwear) status by
 \code{\link{wearingMarking}}.}
 
-\item{cts}{The name of the counts column. The default is "axis1".}
+\item{cts}{The name of the counts column. The default is \dQuote{axis1}.}
 
-\item{markingString}{Option for summarizing wear (markingString = "w") or
-nonwear time (markingString = "nw").}
+\item{markingString}{Option for summarizing wear (markingString = \dQuote{w}) or
+nonwear time (markingString = \dQuote{nw}).}
 
 \item{breaks}{A numeric vector of cut-points. The default cut-points are based on
-Matthews et al. (2016).}
+Matthews \emph{et al.} (2016).}
 
 \item{labels}{A character vector labelling intensity levels.}
 }
 \value{
-A dataframe with an additional pai-level column.
+A data frame with an additional PAI-level column.
 }
 \description{
-This function adds a physical activity intensity level variable "pai" to the
-source dataset. The "pai" is an ordered factor variable. It will be NA for
+This function adds a physical activity intensity level variable \dQuote{pai} to the
+source dataset. The \dQuote{pai} is an ordered factor variable. It will be NA for
 nonwear times.
 }
 \examples{

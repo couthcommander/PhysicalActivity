@@ -37,6 +37,6 @@ Validation of accelerometer wear and nonwear time classification algorithm.
 Med Sci Sports Exerc. 2011 Feb;43(2):357-64.
 }
 \author{
-Zhouwen Liu \email{zhouwen.liu@Vanderbilt.Edu}
+Zhouwen Liu \email{zhouwen.liu@vumc.org}
 }
 \keyword{internal}

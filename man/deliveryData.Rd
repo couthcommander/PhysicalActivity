@@ -3,7 +3,7 @@
 \docType{data}
 \name{deliveryData}
 \alias{deliveryData}
-\title{Delivery Classification Data Example}
+\title{Data Example for Mail Delivery Day Classification}
 \format{A data frame with 20987 observations on the following variables.
 \describe{
   \item{TimeStamp}{A character vector, timestamp of accelerometer measurements}

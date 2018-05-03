@@ -18,7 +18,7 @@ epoch data, set ctPerSec = 1; for 10-sec epoch data, set ctPerSec = 1/10; for
 listed in the file header.}
 }
 \value{
-Data with the correct format (TimeStamp, axis1) to be used for
+a data frame with the correct format (TimeStamp, axis1) to be used for
 \code{\link{wearingMarking}}.
 }
 \description{
@@ -61,5 +61,5 @@ Med Sci Sports Exerc. 2011 Feb;43(2):357-64.
 \code{\link{wearingMarking}}
 }
 \author{
-Zhouwen Liu \email{zhouwen.liu@Vanderbilt.Edu}
+Zhouwen Liu \email{zhouwen.liu@vumc.org}
 }

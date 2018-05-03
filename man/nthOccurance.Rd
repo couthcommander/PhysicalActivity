@@ -22,6 +22,6 @@ loc
 This is an internal function, not for users.
 }
 \author{
-Zhouwen Liu \email{zhouwen.liu@Vanderbilt.Edu}
+Zhouwen Liu \email{zhouwen.liu@vumc.org}
 }
 \keyword{internal}

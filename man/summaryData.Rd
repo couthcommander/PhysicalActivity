@@ -20,14 +20,15 @@ epoch (perMinuteCts = 1) and we recommend to use 1-min epoch data for this
 summary. For examples: for data with 10-sec epoch, set perMinuteCts = 6; for
 data with 1-sec epoch, set perMinuteCts = 60.}
 
-\item{markingString}{Option for summarizing wear (markingString = "w") or
-nonwear time (markingString = "nw").}
+\item{markingString}{Option for summarizing wear (markingString = \dQuote{w}) or
+nonwear time (markingString = \dQuote{nw}).}
 
-\item{TS}{The column name for timestamp. The default is "TimeStamp".}
+\item{TS}{The column name for timestamp. The default is \dQuote{TimeStamp}.}
 
-\item{cts}{The name of the counts column. The default is "axis1".}
+\item{cts}{The name of the counts column. The default is \dQuote{axis1}.}
 
-\item{delivery}{data.frame. Delivery information created by}
+\item{delivery}{data.frame. Delivery information created by
+\code{\link{markDelivery}}.}
 }
 \value{
 \item{unit}{epoch for data.}
@@ -36,10 +37,10 @@ nonwear time (markingString = "nw").}
 accelerometer data.}
 \item{validCut}{a user defined cutoff for the total minutes of classified
 monitor wear time per day to be considered as a valid monitor day.}
-\item{totalValidNumDays}{the total number of valid days based on the user
-defined cutoff for total minutes of wearing and the classified wearing time.}
+\item{totalValidNumDays}{the total number of valid days based on the user defined 
+cutoff (\dQuote{validCut}) for the total minutes of wear time and the classified wear time.}
 \item{totalValidNumWeekWeekend}{the total number of valid weekdays and valid
-weekend days based on a user defined cutoff for the total minutes of
+weekend days based on the user defined cutoff (\dQuote{validCut}) for the total minutes of
 classified monitor wear time per day.}
 \item{wearTimeByDay}{the classified total wear (nonwear) time by day.}
 \item{deliveryDays}{marked delivery days.}
@@ -49,9 +50,11 @@ day.}
 during weekdays and weekends.}
 \item{meanWeartimeOverallValidDays}{the mean wear (nonwear) time for overall
 valid days.}
-\item{dayInfo}{information about each day of wear.}
-\item{intensity}{total time in hours of physical activity intensity by day.}
-\item{meanValidIntensity}{mean PAI-level for valid days.}
+\item{dayInfo}{information about wear time and mean counts for each day.}
+\item{intensity}{optional output depending on \dQuote{pai} column in the data; 
+the total time in hours of physical activity intensity by day.}
+\item{meanValidIntensity}{optional output depending on \dQuote{pai} column in the data; 
+the mean physical activity intensity (PAI) level for valid days.}
 }
 \description{
 This function summarizes accelerometer data and the classified wear or nonwear
@@ -66,7 +69,10 @@ also summarizes the classified wear (nonwear) time by day and by valid day,
 and the mean wear (nonwear) time for valid days during weekday and weekends,
 and for overall valid days. If mail delivery days are classified by 
 \code{\link{markDelivery}}, it also summarizes the classified delivery
-(non-delivery) days with argument "delivery".
+(non-delivery) days with argument \dQuote{delivery}.
+If \dQuote{pai} column is present in the data, 
+which can be created by \code{\link{markPAI}}, then physical activity intensity
+(PAI) level will be summarized in the output.
 }
 \examples{
 data(dataSec)
@@ -89,6 +95,10 @@ options(pa.cts = "vm")
 wm <- wearingMarking(dataset = deliveryData)
 dd <- markDelivery(wm)
 summaryData(wm, delivery = dd)
+
+pai.data <- markPAI(data = wm)
+dd <- markDelivery(pai.data)
+summaryData(pai.data, delivery = dd)
 
 }
 \references{

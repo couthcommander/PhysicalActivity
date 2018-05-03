@@ -13,7 +13,7 @@ readActigraph(datfile, convertTime = TRUE)
 POSIXct.}
 }
 \value{
-data.frame with accelerometer data.
+A data frame with accelerometer data.
 }
 \description{
 This function reads an ActiGraph AGD file into R as a data.frame.
@@ -22,7 +22,7 @@ Observations can be classified with wear and nonwear time using
 \code{\link{wearingMarking}}.
 }
 \details{
-AGD files are SQLite databases. This function requires the \code{RSQLite}
+AGD files are SQLite databases. This function requires the \pkg{RSQLite}
 package.
 }
 \examples{
