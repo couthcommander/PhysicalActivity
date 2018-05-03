@@ -3,14 +3,14 @@
 #' This function executes a SELECT query on an ActiGraph AGD file.
 #'
 #' AGD files are actually SQLite databases.  This function requires the
-#' \code{RSQLite} package.  The user is encouraged to directly interface with
-#' the database by creating a connection with the \code{DBI} package.  This has
+#' \pkg{RSQLite} package.  The user is encouraged to directly interface with
+#' the database by creating a connection with the \pkg{DBI} package.  This has
 #' been tested with AGD files produced with ActiLife v6.11.
 #'
 #' @param datfile An AGD file.
 #' @param qry An SQL SELECT statement.
 #'
-#' @return data.frame with query results.
+#' @return A data frame with query results.
 #'
 #' @templateVar author cole
 #' @template auth
