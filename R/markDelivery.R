@@ -70,7 +70,7 @@ deliveryThreshold <- function(data, daylist, cts = getOption('pa.cts'),
 #' can be used. With the summary statistics, the algorithm defines a set of days 
 #' using 3 methods (namely \code{trim}, \code{consecutive}, and \code{valid}),
 #' which are used to estimate the 95\% confidence interval (CI) based on
-#' $t$-distribution (default) or normal distribution. The lower bound of
+#' t-distribution (default) or normal distribution. The lower bound of
 #' the 95\%  CI is used to classify delivery days; that is if the summary 
 #' statistics for a day is below the lower bound of the 95\% CI, this day is 
 #' classified as delivery day.
@@ -90,7 +90,7 @@ deliveryThreshold <- function(data, daylist, cts = getOption('pa.cts'),
 #'
 #' @return A dataframe with summary information about daily counts.
 #'
-#' @templateVar author cole, choi
+#' @templateVar author colechoi
 #' @template auth
 #'
 #' @examples
