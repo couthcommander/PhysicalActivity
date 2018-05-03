@@ -11,7 +11,11 @@
 #' and the mean wear (nonwear) time for valid days during weekday and weekends,
 #' and for overall valid days. If mail delivery days are classified by 
 #' \code{\link{markDelivery}}, it also summarizes the classified delivery
-#' (non-delivery) days with argument "delivery".
+#' (non-delivery) days with argument \dQuote{delivery}.
+#' If \dQuote{pai} column is present in the data, 
+#' which can be created by \code{\link{markPAI}}, then physical activity intensity
+#' (PAI) level will be summarized in the output.
+#' 
 #' @param data Data with classified wear (nonwear) status by
 #' \code{\link{wearingMarking}}.
 #' @param validCut A cutoff for the total minutes of classified monitor wear
@@ -48,8 +52,8 @@
 #' \item{meanWeartimeOverallValidDays}{the mean wear (nonwear) time for overall
 #' valid days.}
 #' \item{dayInfo}{information about wear time and mean counts for each day.}
-#' \item{intensity}{the total time in hours of physical activity intensity by day.}
-#' \item{meanValidIntensity}{the mean physical activity intensity (PAI) level for valid days.}
+#' \item{intensity}{conditional output, the total time in hours of physical activity intensity by day.}
+#' \item{meanValidIntensity}{conditional output, the mean physical activity intensity (PAI) level for valid days.}
 #'
 #' @template ref2011
 #'
