@@ -24,10 +24,10 @@
 #' epoch (perMinuteCts = 1) and we recommend to use 1-min epoch data for this
 #' summary. For examples: for data with 10-sec epoch, set perMinuteCts = 6; for
 #' data with 1-sec epoch, set perMinuteCts = 60.
-#' @param markingString Option for summarizing wear (markingString = "w") or
-#' nonwear time (markingString = "nw").
-#' @param TS The column name for timestamp. The default is "TimeStamp".
-#' @param cts The name of the counts column. The default is "axis1".
+#' @param markingString Option for summarizing wear (markingString = \dQuote{w}) or
+#' nonwear time (markingString = \dQuote{nw}).
+#' @param TS The column name for timestamp. The default is \dQuote{TimeStamp}.
+#' @param cts The name of the counts column. The default is \dQuote{axis1}.
 #' @param delivery data.frame. Delivery information created by
 #' \code{\link{markDelivery}}.
 #'
@@ -39,9 +39,9 @@
 #' \item{validCut}{a user defined cutoff for the total minutes of classified
 #' monitor wear time per day to be considered as a valid monitor day.}
 #' \item{totalValidNumDays}{the total number of valid days based on the user defined 
-#' cutoff ("validCut") for the total minutes of wear time and the classified wear time.}
+#' cutoff (\dQuote{validCut}) for the total minutes of wear time and the classified wear time.}
 #' \item{totalValidNumWeekWeekend}{the total number of valid weekdays and valid
-#' weekend days based on the user defined cutoff ("validCut") for the total minutes of
+#' weekend days based on the user defined cutoff (\dQuote{validCut}) for the total minutes of
 #' classified monitor wear time per day.}
 #' \item{wearTimeByDay}{the classified total wear (nonwear) time by day.}
 #' \item{deliveryDays}{marked delivery days.}
@@ -84,6 +84,10 @@
 #' wm <- wearingMarking(dataset = deliveryData)
 #' dd <- markDelivery(wm)
 #' summaryData(wm, delivery = dd)
+#'
+#' pai.data <- markPAI(data = wm)
+#' dd <- markDelivery(pai.data)
+#' summaryData(pai.data, delivery = dd)
 #'
 #' @export
 
