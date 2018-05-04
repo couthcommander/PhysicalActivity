@@ -23,7 +23,7 @@
 #' @templateVar author choi
 #' @template auth
 #'
-#' @seealso \code{\link{sumVct}}, \code{\link{wearingMarking}}
+#' @seealso \code{\link{wearingMarking}}, \code{\link{sumVct}}, \code{\link{summaryData}}
 #'
 #' @examples
 #' data(dataSec)
