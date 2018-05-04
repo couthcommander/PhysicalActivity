@@ -20,6 +20,9 @@
 #' Classify mail delivery and non-delivery day status for accelerometer data 
 #' by \code{\link{markDelivery}}.
 #' 
+#' Shiny app called \pck{Actigraph} can be used to make plot for accelerometer data
+#'  and summarize the data, which can be found at \url{http://127.0.0.1:3061}.
+#'
 #' @docType package
 #'
 #' @author Leena Choi \email{leena.choi@@Vanderbilt.Edu},
