@@ -53,6 +53,17 @@
 #' ## include summaryData
 #' sumdat <- summaryData(data=data1m)
 #' plotData(data=data1m, summary=sumdat)
+#' 
+#' ## present daylight saving time change
+#' data(deliveryData)
+#' options(pa.cts = "vm")
+#' wm <- wearingMarking(dataset = deliveryData, TS="TimeStamp", tz="America/Chicago")
+#' sumdat <- summaryData(wm)
+#' plotData(data=wm, summary = sumdat)
+#' ## valid data after delivery marking
+#' del <- markDelivery(wm)
+#' sumdat <- summaryData(wm, delivery = del)
+#' plotData(data=wm, summary = sumdat)
 #' @export
 
 plotData <- function(data, day = NULL, start = NULL, end = NULL,
