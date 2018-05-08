@@ -94,9 +94,9 @@ plotData <- function(data, day = NULL, start = NULL, end = NULL,
     tzs <- as.POSIXlt(dd[,TS])$zone
     if(length(table(tzs)) > 1) {
         dst <- which(tzs != c(tzs[-1], tzs[length(tzs)]))
-        abline(v=dst+0.5, lty=3, lwd=2, col='red')
-        text(dst+0.5, yval * 0.9, pos=2, tzs[dst], cex=0.8, col='red')
-        text(dst+0.5, yval * 0.9, pos=4, tzs[dst+1], cex=0.8, col='red')
+        abline(v=dst+0.5, lty=3, lwd=2, col='magenta')
+        text(dst+0.5, yval * 0.9, pos=2, tzs[dst], cex=0.8, col='magenta')
+        text(dst+0.5, yval * 0.9, pos=4, tzs[dst+1], cex=0.8, col='magenta')
     }
     if(!is.null(summary)) {
         obsday <- unique(dd[,'days'])
