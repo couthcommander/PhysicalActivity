@@ -1,4 +1,4 @@
-#' Convert Accelerometer Output Data to Correct Data Format
+#' Convert Accelerometer Output Data to a Correct Data Format
 #'
 #' This function converts accelerometer output data to a correct data format to
 #' classify wear and nonwear time using \code{\link{wearingMarking}}. This
@@ -13,7 +13,7 @@
 #' @param mode The mode of the ActiLife dat file.  Defaults to 0, and should be
 #' listed in the file header.
 #'
-#' @return a data frame with the correct format (TimeStamp, axis1) to be used for
+#' @return a data frame with the correct format (TimeStamp, counts) to be used for
 #' \code{\link{wearingMarking}}.
 #'
 #' @template ref2011
@@ -28,8 +28,8 @@
 #'
 #' @examples
 #' ###############################################################################
-#' ## Read accelerometer output and convert to correct format (TimeStamp, counts).
-#' ## As example, "rawActigraphOutput.dat" is an Actigraph output with header:
+#' ## Read accelerometer output and convert to a correct format (TimeStamp, counts)
+#' ## Suppose "rawActigraphOutput.dat" is an Actigraph output with header as follows:
 #' ###############################################################################
 #' ## --- Data File Created By ActiGraph GT1M ActiLife v4.4.1 Firmware v7.2.0 ---
 #' ## Serial Number: LYN2B21080027
