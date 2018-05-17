@@ -3,7 +3,8 @@
 #' This function converts accelerometer output data to a correct data format to
 #' classify wear and nonwear time using \code{\link{wearingMarking}}. This
 #' function can accept accelerometer output data with various epochs (for
-#' example, 1-sec, 10-sec or 1-min).
+#' example, 1-sec, 10-sec or 1-min). If accelerometer data are collected with 
+#' three axes, it creates vector magnitude (vm). 
 #'
 #' @param filename A filename of accelerometer output to be read.
 #' @param ctPerSec Data collection epoch. This argument tells the program the
