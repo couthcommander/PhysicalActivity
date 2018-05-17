@@ -3,9 +3,9 @@
 #' This function summarizes accelerometer data and the classified wear or nonwear
 #' time by daily basis.
 #'
-#' This function summarizes the total number of days, weekdays and weekends in
-#' accelerometer data. Also this function provides the total number of valid
-#' days, valid weekdays and valid weekend days based on a user defined cutoff
+#' This function summarizes the total number of days, weekdays and weekend days 
+#' in accelerometer data. It provides the total number of valid days,
+#' valid weekdays and valid weekend days based on a user defined cutoff
 #' for the total minutes of classified monitor wear time per day. This function
 #' also summarizes the classified wear (nonwear) time by day and by valid day,
 #' and the mean wear (nonwear) time for valid days during weekday and weekends,
