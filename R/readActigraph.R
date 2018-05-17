@@ -1,6 +1,6 @@
 #' Read ActiGraph Accelerometer Data
 #'
-#' This function reads an ActiGraph AGD file into R as a data.frame.
+#' This function reads an ActiGraph AGD file into R as a data frame.
 #' If accelerometer data are collected with three axes, it creates vector magnitude
 #' (vm). The counts at any axis or "vm" can be used to classify with wear and 
 #' nonwear time using \code{\link{wearingMarking}}.
