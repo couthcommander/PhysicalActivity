@@ -20,8 +20,17 @@
 #' Classify mail delivery and non-delivery day status for accelerometer data 
 #' by \code{\link{markDelivery}}.
 #' 
-#' Shiny app called \pkg{Actigraph} can be used to make plot for accelerometer data
+#' Shiny app called \pkg{Actigraph} can be used to visualize accelerometer data
 #' and summarize the data.  Please see \url{https://github.com/couthcommander/PhysicalActivityShiny}.
+#'
+#' Three options are available for the package: \code{pa.validCut=600},
+#' \code{pa.timeStamp="TimeStamp"}, and \code{pa.cts="axis1"}. When these 
+#' options are specified (as in \code{markDelivery} example), the other 
+#' functions will automatically respect these values as defaults. For 
+#' instance, the count variable in data(dataSec) is "counts".
+#' Running \code{options(pa.cts='counts')} allows the user to avoid specifying the 
+#' "cts" argument in \code{\link{wearingMarking}}. The options for \code{validCut} and
+#' \code{timeStamp} are rarely changed.
 #'
 #' @docType package
 #'
