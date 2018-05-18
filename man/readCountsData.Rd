@@ -2,7 +2,7 @@
 % Please edit documentation in R/readCountsData.R
 \name{readCountsData}
 \alias{readCountsData}
-\title{Convert Accelerometer Output Data to Correct Data Format}
+\title{Convert Accelerometer Output Data to a Correct Data Format}
 \usage{
 readCountsData(filename, ctPerSec, mode = 0)
 }
@@ -18,14 +18,15 @@ epoch data, set ctPerSec = 1; for 10-sec epoch data, set ctPerSec = 1/10; for
 listed in the file header.}
 }
 \value{
-a data frame with the correct format (TimeStamp, axis1) to be used for
+a data frame with the correct format (TimeStamp, counts) to be used for
 \code{\link{wearingMarking}}.
 }
 \description{
 This function converts accelerometer output data to a correct data format to
 classify wear and nonwear time using \code{\link{wearingMarking}}. This
 function can accept accelerometer output data with various epochs (for
-example, 1-sec, 10-sec or 1-min).
+example, 1-sec, 10-sec or 1-min). If accelerometer data are collected with 
+three axes, it creates vector magnitude (vm).
 }
 \note{
 Warning: It can be very slow if accelerometer data were collected with
@@ -33,8 +34,8 @@ Warning: It can be very slow if accelerometer data were collected with
 }
 \examples{
 ###############################################################################
-## Read accelerometer output and convert to correct format (TimeStamp, counts).
-## As example, "rawActigraphOutput.dat" is an Actigraph output with header:
+## Read accelerometer output and convert to a correct format (TimeStamp, counts)
+## Suppose "rawActigraphOutput.dat" is an Actigraph output with header as follows:
 ###############################################################################
 ## --- Data File Created By ActiGraph GT1M ActiLife v4.4.1 Firmware v7.2.0 ---
 ## Serial Number: LYN2B21080027

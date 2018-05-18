@@ -16,10 +16,10 @@ POSIXct.}
 A data frame with accelerometer data.
 }
 \description{
-This function reads an ActiGraph AGD file into R as a data.frame.
-Accelerometer data has three axes that are used to create vector magnitude.
-Observations can be classified with wear and nonwear time using
-\code{\link{wearingMarking}}.
+This function reads an ActiGraph AGD file into R as a data frame.
+If accelerometer data are collected with three axes, it creates vector magnitude
+(vm). The counts at any axis or "vm" can be used to classify with wear and 
+nonwear time using \code{\link{wearingMarking}}.
 }
 \details{
 AGD files are SQLite databases. This function requires the \pkg{RSQLite}
