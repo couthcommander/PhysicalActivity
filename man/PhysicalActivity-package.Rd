@@ -13,7 +13,7 @@ accelerometer data and obtaining the summary of various information including
 daily monitor wear time and the mean monitor wear time during valid days.
 }
 \details{
-The revised package version 0.2-1 improved the functions in the previous version
+The revised package version 0.2-2 improved the functions in the previous version
 regarding speed and robustness. In addition, several functions were added: 
 \code{\link{markDelivery}} can classify days for ActiGraph delivery by mail; 
 \code{\link{markPAI}} can categorize physical activity intensity level based on
