@@ -4,10 +4,20 @@
 \alias{wearingMarking}
 \title{Classify Wear and Nonwear Time for Accelerometer Data}
 \usage{
-wearingMarking(dataset, frame = 90, perMinuteCts = 60,
-  TS = getOption("pa.timeStamp"), cts = getOption("pa.cts"),
-  streamFrame = NULL, allowanceFrame = 2, newcolname = "wearing",
-  getMinuteMarking = FALSE, dayStart = "00:00:00", tz = "UTC", ...)
+wearingMarking(
+  dataset,
+  frame = 90,
+  perMinuteCts = 60,
+  TS = getOption("pa.timeStamp"),
+  cts = getOption("pa.cts"),
+  streamFrame = NULL,
+  allowanceFrame = 2,
+  newcolname = "wearing",
+  getMinuteMarking = FALSE,
+  dayStart = "00:00:00",
+  tz = "UTC",
+  ...
+)
 }
 \arguments{
 \item{dataset}{The source dataset, in dataframe format, which needs to be

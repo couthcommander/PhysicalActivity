@@ -57,7 +57,7 @@
 #' @keywords accelerometer data process, wear and nonwear classification, 
 #' mail delivery day classification
 #' @importFrom graphics abline plot text mtext
-#' @importFrom stats pt sd qnorm qt quantile
+#' @importFrom stats predict pt sd qnorm qt quantile var
 #'
 #' @examples
 #' data(dataSec)

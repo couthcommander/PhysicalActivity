@@ -1,11 +1,12 @@
 Package: PhysicalActivity
-Version: 0.2-2
-Date: 2018-05-18
+Version: 0.2-3
+Date: 2020-09-10
 Title: Process Accelerometer Data for Physical Activity Measurement
 Authors@R: c(person("Leena", "Choi", role = c("aut", "cre"),
     email = "leena.choi@Vanderbilt.Edu"),
     person("Cole", "Beck", role = "aut"),
     person("Zhouwen", "Liu", role = "aut"),
+    person("Ryan", "Moore", role = "aut"),
     person("Charles E.", "Matthews", role = "aut"),
     person("Maciej S.", "Buchowski", role = "aut"))
 Description: It provides a function "wearingMarking" for classification of monitor
@@ -22,5 +23,5 @@ Description: It provides a function "wearingMarking" for classification of monit
     time zones and daylight saving.
 License: GPL (>=3)
 Depends: R (>= 2.10)
-Suggests: RSQLite, DBI
-RoxygenNote: 6.0.1
+Suggests: RSQLite, DBI, data.table, e1071, keras, reticulate
+RoxygenNote: 7.1.0

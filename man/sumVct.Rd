@@ -4,8 +4,14 @@
 \alias{sumVct}
 \title{Summarize Wear and Nonwear Time Interval}
 \usage{
-sumVct(datavct, wearing = "wearing", TS = getOption("pa.timeStamp"),
-  markingString = "w", by = "days", id = NULL)
+sumVct(
+  datavct,
+  wearing = "wearing",
+  TS = getOption("pa.timeStamp"),
+  markingString = "w",
+  by = "days",
+  id = NULL
+)
 }
 \arguments{
 \item{datavct}{Data with classified wear (nonwear) status classified by

@@ -4,8 +4,14 @@
 \alias{marking}
 \title{Marking Data with Wearing Tags}
 \usage{
-marking(dataset, frame, cts = getOption("pa.cts"), streamFrame = NULL,
-  allowanceFrame = 2, newcolname = "wearing")
+marking(
+  dataset,
+  frame,
+  cts = getOption("pa.cts"),
+  streamFrame = NULL,
+  allowanceFrame = 2,
+  newcolname = "wearing"
+)
 }
 \arguments{
 \item{dataset}{The source dataset, in dataframe format, which needs to be

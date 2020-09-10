@@ -4,9 +4,15 @@
 \alias{plotData}
 \title{Plot Accelerometer Data over Time}
 \usage{
-plotData(data, day = NULL, start = NULL, end = NULL,
-  cts = getOption("pa.cts"), TS = getOption("pa.timeStamp"),
-  summary = NULL)
+plotData(
+  data,
+  day = NULL,
+  start = NULL,
+  end = NULL,
+  cts = getOption("pa.cts"),
+  TS = getOption("pa.timeStamp"),
+  summary = NULL
+)
 }
 \arguments{
 \item{data}{Data with classified wear and nonwear status from

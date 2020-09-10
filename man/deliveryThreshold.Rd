@@ -4,8 +4,13 @@
 \alias{deliveryThreshold}
 \title{Delivery Count Threshold}
 \usage{
-deliveryThreshold(data, daylist, cts = getOption("pa.cts"), dist = c("t",
-  "normal"), stat = c("mean", "sd", "95"))
+deliveryThreshold(
+  data,
+  daylist,
+  cts = getOption("pa.cts"),
+  dist = c("t", "normal"),
+  stat = c("mean", "sd", "95")
+)
 }
 \description{
 Delivery Count Threshold

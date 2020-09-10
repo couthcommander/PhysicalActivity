@@ -4,7 +4,8 @@
 \name{deliveryData}
 \alias{deliveryData}
 \title{Data Example for Mail Delivery Day Classification}
-\format{A data frame with 20987 observations on the following variables.
+\format{
+A data frame with 20987 observations on the following variables.
 \describe{
   \item{TimeStamp}{A character vector, timestamp of accelerometer measurements}
   \item{axis1}{A numeric vector, counts from axis1 of 3-axis accelerometer}
@@ -12,7 +13,8 @@
   \item{axis3}{A numeric vector, counts from axis3 of 3-axis accelerometer}
   \item{steps}{A numeric vector, the number of steps}
   \item{vm}{A numeric vector, the vector magnitude calculated from counts of axis1, axis2 and axis3}
-}}
+}
+}
 \usage{
 deliveryData
 }

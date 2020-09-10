@@ -4,9 +4,15 @@
 \alias{summaryData}
 \title{Summarize Classified Wear Time by Daily Basis}
 \usage{
-summaryData(data, validCut = getOption("pa.validCut"), perMinuteCts = 1,
-  markingString = "w", TS = getOption("pa.timeStamp"),
-  cts = getOption("pa.cts"), delivery = NULL)
+summaryData(
+  data,
+  validCut = getOption("pa.validCut"),
+  perMinuteCts = 1,
+  markingString = "w",
+  TS = getOption("pa.timeStamp"),
+  cts = getOption("pa.cts"),
+  delivery = NULL
+)
 }
 \arguments{
 \item{data}{Data with classified wear (nonwear) status by

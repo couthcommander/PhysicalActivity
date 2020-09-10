@@ -4,10 +4,16 @@
 \alias{markDelivery}
 \title{Classify Mail Delivery and Non-Delivery Days for Accelerometer Data}
 \usage{
-markDelivery(data, cts = getOption("pa.cts"), markingString = "w",
-  window = c("trim", "consecutive", "valid"), method = c("95", "mean",
-  "sd"), validCut = getOption("pa.validCut"), wearThreshold = 300,
-  dist = c("t", "normal"))
+markDelivery(
+  data,
+  cts = getOption("pa.cts"),
+  markingString = "w",
+  window = c("trim", "consecutive", "valid"),
+  method = c("95", "mean", "sd"),
+  validCut = getOption("pa.validCut"),
+  wearThreshold = 300,
+  dist = c("t", "normal")
+)
 }
 \arguments{
 \item{data}{Data with classified wear (nonwear) status by

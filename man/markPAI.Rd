@@ -4,9 +4,13 @@
 \alias{markPAI}
 \title{Mark Physical Activity Intensity (PAI) Level}
 \usage{
-markPAI(data, cts = getOption("pa.cts"), markingString = "w",
-  breaks = c(-Inf, 100, 760, 2020, Inf), labels = c("sedentary", "light",
-  "moderate", "vigorous"))
+markPAI(
+  data,
+  cts = getOption("pa.cts"),
+  markingString = "w",
+  breaks = c(-Inf, 100, 760, 2020, Inf),
+  labels = c("sedentary", "light", "moderate", "vigorous")
+)
 }
 \arguments{
 \item{data}{Data with classified wear (nonwear) status by
