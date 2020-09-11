@@ -29,7 +29,9 @@
 #' @param TS The column name for timestamp. The default is \dQuote{TimeStamp}.
 #' @param cts The name of the counts column. The default is \dQuote{axis1}.
 #' @param delivery data.frame. Delivery information created by
-#' \code{\link{markDelivery}}.
+#' \code{\link{markDelivery}} or \code{\link{deliveryPrediction}}.
+#' @param deliveryCut A cutoff (probability) to consider a valid delivery date.
+#' See the \code{\link{deliveryPrediction}} function. The default value is 0.5.
 #'
 #' @return
 #' \item{unit}{epoch for data.}
@@ -85,7 +87,9 @@
 #' options(pa.cts = "vm")
 #' wm <- wearingMarking(dataset = deliveryData)
 #' dd <- markDelivery(wm)
+#' pdd <- deliveryPred(wm)
 #' summaryData(wm, delivery = dd)
+#' summaryData(wm, delivery = pdd)
 #'
 #' pai.data <- markPAI(data = wm)
 #' dd <- markDelivery(pai.data)
@@ -96,10 +100,15 @@
 summaryData <- function(data, validCut = getOption('pa.validCut'),
                         perMinuteCts = 1, markingString = "w",
                         TS = getOption('pa.timeStamp'),
-                        cts = getOption('pa.cts'), delivery = NULL) {
+                        cts = getOption('pa.cts'), delivery = NULL,
+                        deliveryCut = 0.5) {
     stopifnot('weekday' %in% names(data))
     usePAI <- 'pai' %in% names(data)
-    rmDel <- !is.null(delivery) && 'delivery' %in% names(delivery)
+    rmDel <- 0
+    if(!is.null(delivery)) {
+        if('delivery' %in% names(delivery)) rmDel <- 1
+        if('preds' %in% names(delivery)) rmDel <- 2
+    }
     epoch <- 60 / perMinuteCts
     if(perMinuteCts==1) {
         unit <- "1 min"
@@ -144,8 +153,14 @@ summaryData <- function(data, validCut = getOption('pa.validCut'),
     vDayLabel <- dayLabel[dayLabel[,'wearTime'] >= validCut,]
     # remove delivery dates
     rmDelDays <- NULL
-    if(rmDel) {
-        delDay <- delivery[delivery[,'delivery'] == 1, 'day']
+    if(rmDel > 0) {
+        if(rmDel == 1) {
+          delDay <- delivery[delivery[,'delivery'] == 1, 'day']
+        } else if(rmDel == 2) {
+          # probability between 0 and 1
+          deliveryCut <- min(c(1, max(c(0, deliveryCut))))
+          delDay <- delivery[delivery[,'preds'] > deliveryCut, 'day']
+        }
         delDay1 <- intersect(delDay, vDayLabel[,'days'])
         delDay2 <- intersect(delDay, dayLabel[,'days'])
         if(length(delDay1)) {

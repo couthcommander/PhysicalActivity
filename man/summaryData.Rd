@@ -11,7 +11,8 @@ summaryData(
   markingString = "w",
   TS = getOption("pa.timeStamp"),
   cts = getOption("pa.cts"),
-  delivery = NULL
+  delivery = NULL,
+  deliveryCut = 0.5
 )
 }
 \arguments{
@@ -34,7 +35,10 @@ nonwear time (markingString = \dQuote{nw}).}
 \item{cts}{The name of the counts column. The default is \dQuote{axis1}.}
 
 \item{delivery}{data.frame. Delivery information created by
-\code{\link{markDelivery}}.}
+\code{\link{markDelivery}} or \code{\link{deliveryPrediction}}.}
+
+\item{deliveryCut}{A cutoff (probability) to consider a valid delivery date.
+See the \code{\link{deliveryPrediction}} function. The default value is 0.5.}
 }
 \value{
 \item{unit}{epoch for data.}
@@ -100,7 +104,9 @@ data(deliveryData)
 options(pa.cts = "vm")
 wm <- wearingMarking(dataset = deliveryData)
 dd <- markDelivery(wm)
+pdd <- deliveryPred(wm)
 summaryData(wm, delivery = dd)
+summaryData(wm, delivery = pdd)
 
 pai.data <- markPAI(data = wm)
 dd <- markDelivery(pai.data)
