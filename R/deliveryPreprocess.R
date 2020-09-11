@@ -71,7 +71,7 @@ deliveryPreprocess <- function(df, minLow = 5000, minTime = 10, zeropad = TRUE, 
     return(df)
   }
   dat <- lapply(dat, removeLow)
-  
+
   #Zeropad all days in a trial is less than 1440 observations
   if(zeropad == TRUE) {
     zeroPatch <- function(df) {
@@ -102,6 +102,9 @@ deliveryPreprocess <- function(df, minLow = 5000, minTime = 10, zeropad = TRUE, 
         newdat[[i]] <- tmp2
       }
       moredat <- do.call(rbind, newdat)
+      xnames <- names(df)
+      moredat[,setdiff(xnames, names(moredat))] <- NA
+      moredat <- moredat[,xnames]
       fulldf <- rbind(df, moredat)
       fulldf <- fulldf[order(fulldf[,'TimeStamp']),]
       rownames(fulldf) <- NULL

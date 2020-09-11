@@ -58,6 +58,7 @@
 #' mail delivery day classification
 #' @importFrom graphics abline plot text mtext
 #' @importFrom stats predict pt sd qnorm qt quantile var
+#' @importFrom utils getFromNamespace
 #'
 #' @examples
 #' data(dataSec)

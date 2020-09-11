@@ -23,5 +23,5 @@ Description: It provides a function "wearingMarking" for classification of monit
     time zones and daylight saving.
 License: GPL (>=3)
 Depends: R (>= 2.10)
-Suggests: RSQLite, DBI, data.table, e1071, keras, reticulate
+Suggests: RSQLite, DBI, data.table, e1071, keras, randomForest, reticulate, rms
 RoxygenNote: 7.1.0

@@ -23,13 +23,23 @@ deliveryPrediction <- function(df, feats, model = c('RF','GLM','NN'), ...) {
   }
 
   if(model == "RF") {
+    if(!requireNamespace("randomForest", quietly = TRUE)) {
+      stop("deliveryPrediction requires the randomForest package, please install it.",
+        call. = FALSE)
+    }
     model_RF <- NULL
-    load(system.file("delivery_models", "model_RF.rda"))
+    load(system.file("delivery_models", "model_RF.rda", package = "PhysicalActivity"))
     preds <- as.vector(stats::predict(model_RF, newdata=feats, type="prob")[,1])
   } else if(model == "GLM") {
+    if(!requireNamespace("rms", quietly = TRUE)) {
+      stop("deliveryPrediction requires the rms package, please install it.",
+        call. = FALSE)
+    }
     model_GLM <- NULL
-    load(system.file("delivery_models", "model_GLM.rda"))
-    preds <- as.vector(stats::predict(model_GLM, feats, type="fitted"))
+    load(system.file("delivery_models", "model_GLM.rda", package = "PhysicalActivity"))
+    ns <- loadNamespace('rms')
+    predict.lrm <- getFromNamespace('predict.lrm', ns)
+    preds <- as.vector(predict.lrm(model_GLM, feats, type="fitted"))
     preds <- 1 - preds #Using predict function, 1 label for human wear. Reverse here
   } else if(model == "NN") {
     if(!requireNamespace("reticulate", quietly = TRUE)) {
@@ -45,17 +55,16 @@ deliveryPrediction <- function(df, feats, model = c('RF','GLM','NN'), ...) {
         call. = FALSE)
     }
     reticulate::import('tensorflow')
-    model_CRNN <- keras::load_model_tf(system.file("delivery_models", "model_CRNN"))
+    model_CRNN <- keras::load_model_tf(system.file("delivery_models", "model_CRNN", package = "PhysicalActivity"))
     dtAvailable <- requireNamespace("data.table", quietly = TRUE)
     orthdf <- addDayIndex(df, ...)
 
-    axesCols <- c('axis1','axis2','axis3')
     if(dtAvailable) {
-      ..axesCols <- NULL
-      axes_scale <- vapply(orthdf[,..axesCols], base::scale, numeric(nrow(orthdf)))
-    } else {
-      axes_scale <- vapply(orthdf[,axesCols], base::scale, numeric(nrow(orthdf)))
+      # ensure expected behaviour
+      class(orthdf) <- 'data.frame'
     }
+    axesCols <- c('axis1','axis2','axis3')
+    axes_scale <- vapply(orthdf[,axesCols], base::scale, numeric(nrow(orthdf)))
     #Format data as list of dt's by ID_day
     dt <- split.data.frame(axes_scale, orthdf[['ID_day']])
     #Reshape list into 3-D array for input into neural net
