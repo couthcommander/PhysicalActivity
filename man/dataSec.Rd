@@ -13,7 +13,7 @@ variables.
 }
 }
 \usage{
-dataSec
+data(dataSec)
 }
 \description{
 Approximately 3 days of accelerometer data collected with 1-sec epoch in the

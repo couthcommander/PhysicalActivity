@@ -55,7 +55,10 @@ deliveryPrediction <- function(df, feats, model = c('RF','GLM','NN'), ...) {
         call. = FALSE)
     }
     reticulate::import('tensorflow')
-    model_CRNN <- keras::load_model_tf(system.file("delivery_models", "model_CRNN", package = "PhysicalActivity"))
+    weights <- readRDS(system.file("delivery_models", "model_CRNN_W", package = "PhysicalActivity"))
+    arch <- readRDS(system.file("delivery_models", "model_CRNN_A", package = "PhysicalActivity"))
+    model_CRNN <- keras::model_from_json(arch)
+    model_CRNN <- keras::set_weights(model_CRNN, weights) 
     dtAvailable <- requireNamespace("data.table", quietly = TRUE)
     orthdf <- addDayIndex(df, ...)
 

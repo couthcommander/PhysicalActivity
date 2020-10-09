@@ -54,8 +54,9 @@
 #' Distributed lag and spline modeling for predicting energy expenditure from 
 #' accelerometry in youth. J Appl Physiol. 2010 Feb;108(2):314-27.
 #'
-#' @keywords accelerometer data process, wear and nonwear classification, 
-#' mail delivery day classification
+#' @concept accelerometer data process
+#' @concept wear and nonwear classification
+#' @concept mail delivery day classification
 #' @importFrom graphics abline plot text mtext
 #' @importFrom stats predict pt sd qnorm qt quantile var
 #' @importFrom utils getFromNamespace

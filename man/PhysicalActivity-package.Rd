@@ -74,14 +74,6 @@ Maciej S. Buchowski \email{maciej.buchowski@Vanderbilt.Edu}
 
 Maintainer: Leena Choi \email{leena.choi@Vanderbilt.Edu}
 }
-\keyword{accelerometer}
-\keyword{and}
-\keyword{classification}
-\keyword{classification,}
-\keyword{data}
-\keyword{day}
-\keyword{delivery}
-\keyword{mail}
-\keyword{nonwear}
-\keyword{process,}
-\keyword{wear}
+\concept{accelerometer data process}
+\concept{mail delivery day classification}
+\concept{wear and nonwear classification}

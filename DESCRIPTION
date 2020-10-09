@@ -2,9 +2,13 @@ Package: PhysicalActivity
 Version: 0.2-3
 Date: 2020-09-10
 Title: Process Accelerometer Data for Physical Activity Measurement
-Authors@R: c(person("Leena", "Choi", role = c("aut", "cre"),
-    email = "leena.choi@Vanderbilt.Edu"),
-    person("Cole", "Beck", role = "aut"),
+Authors@R:
+    c(person("Leena", "Choi", role = c("aut", "cre"),
+             email = "leena.choi@Vanderbilt.Edu",
+             comment = c(ORCID = "0000-0002-2544-7090")),
+    person("Cole", "Beck", role = "aut",
+           email = "cole.beck@vumc.org",
+           comment = c(ORCID = "0000-0002-6849-6255")),
     person("Zhouwen", "Liu", role = "aut"),
     person("Ryan", "Moore", role = "aut"),
     person("Charles E.", "Matthews", role = "aut"),
@@ -24,4 +28,4 @@ Description: It provides a function "wearingMarking" for classification of monit
 License: GPL (>=3)
 Depends: R (>= 2.10)
 Suggests: RSQLite, DBI, data.table, e1071, keras, randomForest, reticulate, rms
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1

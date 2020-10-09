@@ -2,6 +2,8 @@
 #'
 #' Approximately 15 days of 3-axis accelerometer data collected with 1-minute epoch.
 #'
+#' @usage data(deliveryData)
+#'
 #' @format A data frame with 20987 observations on the following variables.
 #' \describe{
 #'   \item{TimeStamp}{A character vector, timestamp of accelerometer measurements}

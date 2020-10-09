@@ -4,6 +4,8 @@
 #' correct data format that can be used by \code{wearingMarking} to classify
 #' wear and nonwear time.
 #'
+#' @usage data(dataSec)
+#'
 #' @format A data frame with 238140 observations on the following 2 required
 #' variables.
 #' \describe{

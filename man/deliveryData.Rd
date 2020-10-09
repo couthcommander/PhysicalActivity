@@ -16,7 +16,7 @@ A data frame with 20987 observations on the following variables.
 }
 }
 \usage{
-deliveryData
+data(deliveryData)
 }
 \description{
 Approximately 15 days of 3-axis accelerometer data collected with 1-minute epoch.
