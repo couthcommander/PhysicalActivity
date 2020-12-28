@@ -2,27 +2,51 @@
 % Please edit documentation in R/deliveryPreprocess.R
 \name{deliveryPreprocess}
 \alias{deliveryPreprocess}
-\title{deliveryPreprocess}
+\title{Preprocess Accelerometry Data}
 \usage{
 deliveryPreprocess(df, minLow = 5000, minTime = 10, zeropad = TRUE, ...)
 }
 \arguments{
-\item{df}{details}
+\item{df}{A dataframe. The source accelerometry dataset, in dataframe format.}
 
-\item{minLow}{details}
+\item{minLow}{Numeric. The minimum total counts of movement for a day to not be removed.}
 
-\item{minTime}{details}
+\item{minTime}{Numeric. The minimum number of minutes of activity for a day to not be removed.}
 
-\item{zeropad}{details}
+\item{zeropad}{Boolean value for truncated days to be zeropadded.}
 
-\item{\dots}{possibly used to create datetime variable from TimeStamp}
+\item{\dots}{not used at this time}
 }
 \value{
-details
+The dataframe is returned with days fulfilling the dropping criteria removed and truncated days zeropadded. 
+A new column indicating which day is added to the dataframe.
 }
 \description{
-description
+This function preprocesses accelerometry data by removing days based on a total
+activity count (default: less than 5000) or total time with activity (default: less than 10 minutes). 
+Additionally, the function has an option to zeropad truncated days such that that days that do not 
+have a whole day of 1440 minutes of data spanning from 00:00 to 23:59 (default: TRUE).
 }
 \details{
-details
+Function works for dataframes from one or multiple unique trials.
+}
+\note{
+The input dataframe should have the following columns: 
+\sQuote{TimeStamp}, \sQuote{axis1}, \sQuote{axis2}, \sQuote{axis3}, \sQuote{vm},
+where \sQuote{vm} is the vector magnitude of axes 1, 2, and 3. 
+Dataframe should also be formatted to 60 second epoch.
+}
+\examples{
+data(deliveryData)
+
+deliveryDataProcessed <- deliveryPreprocess(df = deliveryData)
+
+}
+\seealso{
+\code{\link{deliveryPred}}
+}
+\author{
+Ryan Moore \email{ryan.moore@vumc.org},
+Cole Beck \email{cole.beck@vumc.org}, and
+Leena Choi \email{leena.choi@Vanderbilt.Edu}
 }

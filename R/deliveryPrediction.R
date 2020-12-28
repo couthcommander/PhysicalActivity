@@ -1,17 +1,38 @@
-#' deliveryPrediction
+#' Predict Delivery Days in Accelerometry Data
 #'
-#' description
+#' The function predicts the probability of each day in an accelerometry dataset being 
+#' caused from delivery activity instead of human activity. 
+#' The prediction model can be selected from one of three models, 
+#' a Random Forest, a logistic regression, and a convolutional neural network (default: Random Forest).
 #'
-#' details
+#' Function works for data consisting of one or multiple unique trials.
 #'
-#' @param df details
-#' @param feats details
-#' @param model details
-#' @param \dots possibly used to create datetime variable from TimeStamp
+#' @param df A dataframe. The source accelerometry dataset, in dataframe format.
+#' @param feats A dataframe. Features output from the \code{\link{deliveryFeatures}} function.
+#' @param model A character. Indicates which prediction model to use.
+#' \sQuote{RF} is a Random Forest. \sQuote{GLM} is a logistic regression, and
+#' \sQuote{NN} is a convolutional neural network.
+#' @param \dots not used at this time
 #'
-#' @return details
+#' @return A dataframe is returned with a predicted probability of each day being a delivery activity day.
 #'
+#' @note The input dataframe should have the following columns: 
+#' \sQuote{TimeStamp}, \sQuote{axis1}, \sQuote{axis2}, \sQuote{axis3}, \sQuote{vm},
+#' where \sQuote{vm} is the vector magnitude of axes 1, 2, and 3. 
+#' Dataframe should also be formatted to 60 second epoch. 
+#' 
+#' @templateVar author ryancolechoi
+#' @template auth
+#' 
+#' @seealso \code{\link{deliveryFeatures}}, \code{\link{deliveryPred}}
+#' 
 #' @examples
+#' data(deliveryData)
+#'
+#' deliveryDataProcessed <- deliveryPreprocess(df = deliveryData)
+#' deliveryDataFeats <- deliveryFeatures(df = deliveryDataProcessed)
+#' deliveryPrediction(deliveryDataProcessed, deliveryDataFeats)
+#'
 #' @export
 
 deliveryPrediction <- function(df, feats, model = c('RF','GLM','NN'), ...) {

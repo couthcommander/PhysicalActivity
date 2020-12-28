@@ -2,21 +2,44 @@
 % Please edit documentation in R/deliveryFeatures.R
 \name{deliveryFeatures}
 \alias{deliveryFeatures}
-\title{deliveryFeatures}
+\title{Delivery Features}
 \usage{
 deliveryFeatures(df, ...)
 }
 \arguments{
-\item{df}{details}
+\item{df}{A dataframe. The source accelerometry dataset, in dataframe format.}
 
-\item{\dots}{possibly used to create datetime variable from TimeStamp}
+\item{\dots}{not used at this time}
 }
 \value{
-details
+A dataframe is returned with a row for each unique day and a column for each feature.
 }
 \description{
-description
+The function extracts multiple statistical features relevant for classification of days as delivery or human wear. 
+The extracted features are: mean, variance, maximum, absolute change, absolute energy, 
+proportion of trial completed, 95th quantile, skewness, and kurtosis.
 }
 \details{
-details
+Function works for data consisting of one or multiple unique trials.
+}
+\note{
+The input dataframe should have the following columns: 
+\sQuote{TimeStamp}, \sQuote{axis1}, \sQuote{axis2}, \sQuote{axis3}, \sQuote{vm},
+where \sQuote{vm} is the vector magnitude of axes 1, 2, and 3. 
+Dataframe should also be formatted to 60 second epoch.
+}
+\examples{
+data(deliveryData)
+
+deliveryDataProcessed <- deliveryPreprocess(df = deliveryData)
+deliveryDataFeats <- deliveryFeatures(df = deliveryDataProcessed)
+
+}
+\seealso{
+\code{\link{deliveryPred}}
+}
+\author{
+Ryan Moore \email{ryan.moore@vumc.org},
+Cole Beck \email{cole.beck@vumc.org}, and
+Leena Choi \email{leena.choi@Vanderbilt.Edu}
 }

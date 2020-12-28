@@ -1,18 +1,36 @@
-#' deliveryPreprocess
+#' Preprocess Accelerometry Data
 #'
-#' description
+#' This function preprocesses accelerometry data by removing days based on a total
+#' activity count (default: less than 5000) or total time with activity (default: less than 10 minutes). 
+#' Additionally, the function has an option to zeropad truncated days such that that days that do not 
+#' have a whole day of 1440 minutes of data spanning from 00:00 to 23:59 (default: TRUE).
 #'
-#' details
+#' Function works for dataframes from one or multiple unique trials.
 #'
-#' @param df details
-#' @param minLow details
-#' @param minTime details
-#' @param zeropad details
-#' @param \dots possibly used to create datetime variable from TimeStamp
+#' @param df A dataframe. The source accelerometry dataset, in dataframe format. 
+#' @param minLow Numeric. The minimum total counts of movement for a day to not be removed.
+#' @param minTime Numeric. The minimum number of minutes of activity for a day to not be removed.
+#' @param zeropad Boolean value for truncated days to be zeropadded.
+#' @param \dots not used at this time
 #'
-#' @return details
+#' @return The dataframe is returned with days fulfilling the dropping criteria removed and truncated days zeropadded. 
+#' A new column indicating which day is added to the dataframe.
+#' 
+#' @note The input dataframe should have the following columns: 
+#' \sQuote{TimeStamp}, \sQuote{axis1}, \sQuote{axis2}, \sQuote{axis3}, \sQuote{vm},
+#' where \sQuote{vm} is the vector magnitude of axes 1, 2, and 3. 
+#' Dataframe should also be formatted to 60 second epoch. 
+#'
+#' @templateVar author ryancolechoi
+#' @template auth
+#' 
+#' @seealso \code{\link{deliveryPred}}
 #'
 #' @examples
+#' data(deliveryData)
+#' 
+#' deliveryDataProcessed <- deliveryPreprocess(df = deliveryData)
+#' 
 #' @export
 
 deliveryPreprocess <- function(df, minLow = 5000, minTime = 10, zeropad = TRUE, ...) {

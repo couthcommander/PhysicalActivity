@@ -2,21 +2,47 @@
 % Please edit documentation in R/deliveryPred.R
 \name{deliveryPred}
 \alias{deliveryPred}
-\title{deliveryPred}
+\title{Wrapper Function for Accelerometry data Preprocessing, Feature Extraction, and Delivery Prediction}
 \usage{
 deliveryPred(df, model = c("RF", "NN", "GLM"))
 }
 \arguments{
-\item{df}{details}
+\item{df}{A dataframe. The source accelerometry dataset, in dataframe format.}
 
-\item{model}{details}
+\item{model}{A character. Indicates which prediction model to use.
+\sQuote{RF} is a Random Forest. \sQuote{GLM} is a logistic regression, and
+\sQuote{NN} is a convolutional neural network.}
 }
 \value{
-details
+A dataframe is returned with a predicted probability of each day being a delivery activity day.
 }
 \description{
-description
+The function is a wrapper function that performs preprocessing, feature extraction, and delivery day prediction 
+of an accelerometry dataset. The prediction model can be selected from one of three models, 
+a Random Forest, a logistic regression, and a convolutional neural network (default: Random Forest).
 }
 \details{
-details
+Function works for data consisting of one or multiple unique trials.
+}
+\note{
+The input dataframe should have the following columns: 
+\sQuote{TimeStamp}, \sQuote{axis1}, \sQuote{axis2}, \sQuote{axis3}, \sQuote{vm},
+where \sQuote{vm} is the vector magnitude of axes 1, 2, and 3. 
+Dataframe should also be formatted to 60 second epoch. 
+
+The function uses the default preprocessing criteria used in the development of the predictive models.
+}
+\examples{
+data(deliveryData)
+
+predictions <- deliveryPred(df = deliveryData, model = "GLM")
+
+}
+\seealso{
+\code{\link{deliveryPreprocess}}, \code{\link{deliveryFeatures}}, \code{\link{deliveryPrediction}}
+}
+\author{
+Ryan Moore \email{ryan.moore@vumc.org},
+Cole Beck \email{cole.beck@vumc.org}, and
+Leena Choi \email{leena.choi@Vanderbilt.Edu}
 }

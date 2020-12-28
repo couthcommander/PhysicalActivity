@@ -1,15 +1,32 @@
-#' deliveryFeatures
+#' Delivery Features
 #'
-#' description
+#' The function extracts multiple statistical features relevant for classification of days as delivery or human wear. 
+#' The extracted features are: mean, variance, maximum, absolute change, absolute energy, 
+#' proportion of trial completed, 95th quantile, skewness, and kurtosis.
 #'
-#' details
+#' Function works for data consisting of one or multiple unique trials.
 #'
-#' @param df details
-#' @param \dots possibly used to create datetime variable from TimeStamp
+#' @param df A dataframe. The source accelerometry dataset, in dataframe format.
+#' @param \dots not used at this time
 #'
-#' @return details
-#'
+#' @return A dataframe is returned with a row for each unique day and a column for each feature.
+#' 
+#' @note The input dataframe should have the following columns: 
+#' \sQuote{TimeStamp}, \sQuote{axis1}, \sQuote{axis2}, \sQuote{axis3}, \sQuote{vm},
+#' where \sQuote{vm} is the vector magnitude of axes 1, 2, and 3. 
+#' Dataframe should also be formatted to 60 second epoch. 
+#' 
+#' @templateVar author ryancolechoi
+#' @template auth
+#' 
+#' @seealso \code{\link{deliveryPred}}
+#' 
 #' @examples
+#' data(deliveryData)
+#' 
+#' deliveryDataProcessed <- deliveryPreprocess(df = deliveryData)
+#' deliveryDataFeats <- deliveryFeatures(df = deliveryDataProcessed)
+#' 
 #' @export
 
 deliveryFeatures <- function(df, ...) {

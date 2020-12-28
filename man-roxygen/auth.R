@@ -13,4 +13,8 @@
 #' Leena Choi \email{leena.choi@@Vanderbilt.Edu}
 <% } else if(author == "liu") { -%>
 #' @author Zhouwen Liu \email{zhouwen.liu@@vumc.org}
+<% } else if(author == "ryancolechoi") { -%>
+#' @author Ryan Moore \email{ryan.moore@@vumc.org},
+#' Cole Beck \email{cole.beck@@vumc.org}, and
+#' Leena Choi \email{leena.choi@@Vanderbilt.Edu}
 <% } -%>
