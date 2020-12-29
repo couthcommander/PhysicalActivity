@@ -1,6 +1,6 @@
 Package: PhysicalActivity
 Version: 0.2-4
-Date: 2020-12-28
+Date: 2020-12-29
 Title: Process Accelerometer Data for Physical Activity Measurement
 Authors@R:
     c(person("Leena", "Choi", role = c("aut", "cre"),
@@ -10,7 +10,9 @@ Authors@R:
            email = "cole.beck@vumc.org",
            comment = c(ORCID = "0000-0002-6849-6255")),
     person("Zhouwen", "Liu", role = "aut"),
-    person("Ryan", "Moore", role = "aut"),
+    person("Ryan", "Moore", role = "aut", 
+    email="ryan.moore@vumc.org",
+    comment=c(ORCID="0000-000")),
     person("Charles E.", "Matthews", role = "aut"),
     person("Maciej S.", "Buchowski", role = "aut"))
 Description: It provides a function "wearingMarking" for classification of monitor
@@ -18,9 +20,11 @@ Description: It provides a function "wearingMarking" for classification of monit
     physical activity. The package also contains functions for making plot for 
     accelerometer data and obtaining the summary of various information including 
     daily monitor wear time and the mean monitor wear time during valid days.      
-    The revised package version 0.2-1 improved the functions in the previous version
-    regarding speed and robustness. In addition, several functions were added: 
-    "markDelivery" can classify days for ActiGraph delivery by mail; 
+    The revised package version 0.2-4 improved the functions in the previous version
+    regarding speed and robustness, and added several new functions: 
+    "deliveryPred" and "markDelivery" can classify days for ActiGraph delivery by mail;
+    "deliveryPreprocess” can process accelerometry data for analysis by zeropadding incomplete 
+    days and removing low activity days;
     "markPAI" can categorize physical activity intensity level based on user-defined 
     cut-points of accelerometer counts. It also supports importing ActiGraph AGD files 
     with "readActigraph" and "queryActigraph" functions. The package also better supports
