@@ -3,17 +3,29 @@ Version: 0.2-4
 Date: 2020-12-29
 Title: Process Accelerometer Data for Physical Activity Measurement
 Authors@R:
-    c(person("Leena", "Choi", role = c("aut", "cre"),
-             email = "leena.choi@Vanderbilt.Edu",
+    c(person(given = "Leena",
+             family = "Choi",
+             role = c("aut", "cre"),
+             email = "cole.beck@vumc.org",
              comment = c(ORCID = "0000-0002-2544-7090")),
-    person("Cole", "Beck", role = "aut",
-           email = "cole.beck@vumc.org",
-           comment = c(ORCID = "0000-0002-6849-6255")),
-    person("Zhouwen", "Liu", role = "aut"),
-    person("Ryan", "Moore", role = "aut", 
-    email="ryan.moore@vumc.org"),
-    person("Charles E.", "Matthews", role = "aut"),
-    person("Maciej S.", "Buchowski", role = "aut"))
+      person(given = "Cole",
+             family = "Beck",
+             role = "aut",
+             email = "cole.beck@vumc.org",
+             comment = c(ORCID = "0000-0002-6849-6255")),
+      person(given = "Zhouwen",
+             family = "Liu",
+             role = "aut"),
+      person(given = "Ryan",
+             family = "Moore",
+             role = "aut",
+             email = "ryan.moore@vumc.org"),
+      person(given = "Charles E.",
+             family = "Matthews",
+             role = "aut"),
+      person(given = "Maciej S.",
+             family = "Buchowski",
+             role = "aut"))
 Description: It provides a function "wearingMarking" for classification of monitor
     wear and nonwear time intervals in accelerometer data collected to assess
     physical activity. The package also contains functions for making plot for 
