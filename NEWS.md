@@ -6,7 +6,7 @@
 
 # Version 0.2-3
 
-* adding Ryan Moore's contributions
+* adding Ryan Moore's contributions, models to classify deliver days
 * new function `deliveryPreprocess`
 * new function `deliveryFeatures`
 * new function `deliveryPrediction`
