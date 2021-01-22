@@ -19,15 +19,11 @@ Description: It provides a function "wearingMarking" for classification of monit
     physical activity. The package also contains functions for making plot for 
     accelerometer data and obtaining the summary of various information including 
     daily monitor wear time and the mean monitor wear time during valid days.      
-    The revised package version 0.2-4 improved the functions in the previous version
-    regarding speed and robustness, and added several new functions: 
     "deliveryPred" and "markDelivery" can classify days for ActiGraph delivery by mail;
     "deliveryPreprocess" can process accelerometry data for analysis by zeropadding incomplete 
-    days and removing low activity days;
-    "markPAI" can categorize physical activity intensity level based on user-defined 
-    cut-points of accelerometer counts. It also supports importing ActiGraph AGD files 
-    with "readActigraph" and "queryActigraph" functions. The package also better supports
-    time zones and daylight saving.
+    days and removing low activity days; "markPAI" can categorize physical activity
+    intensity level based on user-defined cut-points of accelerometer counts. It also
+    supports importing ActiGraph AGD files with "readActigraph" and "queryActigraph" functions.
 License: GPL (>=3)
 Depends: R (>= 2.10)
 Suggests: RSQLite, DBI, data.table, e1071, keras, randomForest, reticulate, rms
