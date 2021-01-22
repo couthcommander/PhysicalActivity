@@ -1,4 +1,20 @@
-# PhysicalActivity 0.2-1
+# PhysicalActivity 0.2-4
+
+# Version 0.2-4
+
+* cleaned up for CRAN submission
+
+# Version 0.2-3
+
+* adding Ryan Moore's contributions
+* new function `deliveryPreprocess`
+* new function `deliveryFeatures`
+* new function `deliveryPrediction`
+* new wrapper function `deliveryPred`
+
+# Version 0.2-2
+
+* cleaned up for CRAN submission
 
 # Version 0.2-1
 
